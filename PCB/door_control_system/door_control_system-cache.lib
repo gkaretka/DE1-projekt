@@ -1,0 +1,279 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# Device_D_Schottky
+#
+DEF Device_D_Schottky D 0 40 N N 1 F N
+F0 "D" 0 100 50 H V C CNN
+F1 "Device_D_Schottky" 0 -100 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ TO-???*
+ *_Diode_*
+ *SingleDiode*
+ D_*
+$ENDFPLIST
+DRAW
+P 2 0 1 0 50 0 -50 0 N
+P 4 0 1 10 50 50 50 -50 -50 0 50 50 N
+P 6 0 1 10 -75 25 -75 50 -50 50 -50 -50 -25 -50 -25 -25 N
+X K 1 -150 0 100 R 50 50 1 1 P
+X A 2 150 0 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Device_R
+#
+DEF Device_R R 0 0 N Y 1 F N
+F0 "R" 80 0 50 V V C CNN
+F1 "Device_R" 0 0 50 V V C CNN
+F2 "" -70 0 50 V I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ R_*
+$ENDFPLIST
+DRAW
+S -40 -100 40 100 0 1 10 N
+X ~ 1 0 150 50 D 50 50 1 1 P
+X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Display_Character_HDSP-A401
+#
+DEF Display_Character_HDSP-A401 U 0 20 Y Y 1 F N
+F0 "U" -150 550 50 H V C CNN
+F1 "Display_Character_HDSP-A401" 250 550 50 H V C CNN
+F2 "Display_7Segment:HDSP-A401" 0 -550 50 H I C CNN
+F3 "" -800 1000 50 H I C CNN
+$FPLIST
+ HDSP?A401*
+$ENDFPLIST
+DRAW
+T 0 10 95 20 0 1 0 A Normal 0 C C
+T 0 100 65 20 0 1 0 B Normal 0 C C
+T 0 90 -55 20 0 1 0 C Normal 0 C C
+T 0 -10 -85 20 0 1 0 D Normal 0 C C
+T 0 140 -115 20 0 1 0 DP Normal 0 C C
+T 0 -100 -55 20 0 1 0 E Normal 0 C C
+T 0 -90 65 20 0 1 0 F Normal 0 C C
+T 0 0 35 20 0 1 0 G Normal 0 C C
+S -200 500 200 -500 1 1 10 f
+P 2 1 1 20 -60 -15 -70 -95 N
+P 2 1 1 20 -50 -115 30 -115 N
+P 2 1 1 20 -50 105 -60 25 N
+P 2 1 1 20 -40 5 40 5 N
+P 2 1 1 20 -30 125 50 125 N
+P 2 1 1 20 60 -15 50 -95 N
+P 2 1 1 20 70 105 60 25 N
+P 2 1 1 20 100 -115 100 -115 N
+X CA 1 300 -300 100 L 50 50 1 1 I
+X A 10 -300 300 100 R 50 50 1 1 I
+X F 2 -300 -200 100 R 50 50 1 1 I
+X G 3 -300 -300 100 R 50 50 1 1 I
+X E 4 -300 -100 100 R 50 50 1 1 I
+X D 5 -300 0 100 R 50 50 1 1 I
+X CA 6 300 -400 100 L 50 50 1 1 I
+X DP 7 -300 -400 100 R 50 50 1 1 I
+X C 8 -300 100 100 R 50 50 1 1 I
+X B 9 -300 200 100 R 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+# Relay_DIPxx-1Axx-13x
+#
+DEF Relay_DIPxx-1Axx-13x K 0 20 Y Y 1 F N
+F0 "K" 350 150 50 H V L CNN
+F1 "Relay_DIPxx-1Axx-13x" 350 50 50 H V L CNN
+F2 "Relay_THT:Relay_StandexMeder_DIP_LowProfile" 350 -50 50 H I L CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ Relay*StandexMeder*DIP*LowProfile*
+$ENDFPLIST
+DRAW
+S -400 200 300 -200 0 1 10 f
+S -325 75 -75 -75 0 1 10 N
+P 4 0 0 0 200 200 200 100 175 125 200 150 N
+P 2 0 1 10 -300 -75 -100 75 N
+P 2 0 1 0 -200 -200 -200 -75 N
+P 2 0 1 0 -200 200 -200 75 N
+P 2 0 1 10 -75 0 -50 0 N
+P 2 0 1 10 -25 0 0 0 N
+P 2 0 1 10 25 0 50 0 N
+P 2 0 1 10 75 0 100 0 N
+P 2 0 1 10 125 0 150 0 N
+P 2 0 1 20 200 -100 125 150 N
+P 2 0 1 0 200 -100 200 -200 N
+X ~ 14 200 -300 100 U 50 50 1 1 P
+X ~ 2 -200 -300 100 U 50 50 1 1 P
+X ~ 6 -200 300 100 D 50 50 1 1 P
+X ~ 8 200 300 100 D 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Switch_SW_MEC_5G
+#
+DEF Switch_SW_MEC_5G SW 0 40 N N 1 F N
+F0 "SW" 50 100 50 H V L CNN
+F1 "Switch_SW_MEC_5G" 0 -60 50 H V C CNN
+F2 "" 0 200 50 H I C CNN
+F3 "" 0 200 50 H I C CNN
+$FPLIST
+ SW*MEC*5G*
+$ENDFPLIST
+DRAW
+C -80 0 20 0 1 0 N
+C 80 0 20 0 1 0 N
+P 2 0 1 0 0 50 0 120 N
+P 2 0 1 0 100 50 -100 50 N
+X A 1 -200 0 100 R 50 50 0 1 P
+X B 3 200 0 100 L 50 50 0 1 P
+X A 2 -200 0 100 R 50 50 1 1 P N
+X B 4 200 0 100 L 50 50 1 1 P N
+ENDDRAW
+ENDDEF
+#
+# dk_Transistors-FETs-MOSFETs-Single_2N7000
+#
+DEF dk_Transistors-FETs-MOSFETs-Single_2N7000 Q 0 0 Y Y 1 F N
+F0 "Q" -106 143 60 H V R CNN
+F1 "dk_Transistors-FETs-MOSFETs-Single_2N7000" 136 0 60 V V C CNN
+F2 "digikey-footprints:TO-92-3" 200 200 60 H I L CNN
+F3 "https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF" 200 300 60 H I L CNN
+F4 "2N7000FS-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "2N7000" 200 500 60 H I L CNN "MPN"
+F6 "Discrete Semiconductor Products" 200 600 60 H I L CNN "Category"
+F7 "Transistors - FETs, MOSFETs - Single" 200 700 60 H I L CNN "Family"
+F8 "https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/on-semiconductor/2N7000/2N7000FS-ND/244278" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "MOSFET N-CH 60V 200MA TO-92" 200 1000 60 H I L CNN "Description"
+F11 "ON Semiconductor" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C -50 0 130 0 1 0 f
+C 0 -75 5 0 1 0 N
+C 0 -55 5 0 1 0 N
+C 0 75 5 0 1 0 N
+P 2 0 1 0 0 -55 -100 -55 N
+P 3 0 1 0 -200 -100 -120 -100 -120 55 N
+P 3 0 1 0 0 -100 0 0 -100 0 N
+P 3 0 1 0 0 100 0 55 -100 55 N
+P 5 0 1 0 -5 -75 40 -75 40 55 40 75 -5 75 N
+P 2 1 1 0 -100 -55 -100 -75 N
+P 2 1 1 0 -100 -55 -100 -35 N
+P 2 1 1 0 -100 0 -100 -20 N
+P 2 1 1 0 -100 0 -100 20 N
+P 2 1 1 0 -100 75 -100 35 N
+P 2 1 1 0 60 20 20 20 N
+P 4 1 1 0 -100 0 -70 20 -70 -20 -100 0 F
+P 4 1 1 0 40 20 20 -10 60 -10 40 20 F
+X S 1 0 -200 100 U 50 50 1 1 B
+X G 2 -300 -100 100 R 50 50 1 1 B
+X D 3 0 200 100 D 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+# dk_Transistors-FETs-MOSFETs-Single_BSS84
+#
+DEF dk_Transistors-FETs-MOSFETs-Single_BSS84 Q 0 0 Y Y 1 F N
+F0 "Q" -64 201 60 H V R CNN
+F1 "dk_Transistors-FETs-MOSFETs-Single_BSS84" 186 0 60 V V C CNN
+F2 "digikey-footprints:SOT-23-3" 200 200 60 H I L CNN
+F3 "https://www.onsemi.com/pub/Collateral/BSS84-D.PDF" 200 300 60 H I L CNN
+F4 "BSS84CT-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "BSS84" 200 500 60 H I L CNN "MPN"
+F6 "Discrete Semiconductor Products" 200 600 60 H I L CNN "Category"
+F7 "Transistors - FETs, MOSFETs - Single" 200 700 60 H I L CNN "Family"
+F8 "https://www.onsemi.com/pub/Collateral/BSS84-D.PDF" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/on-semiconductor/BSS84/BSS84CT-ND/244297" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "MOSFET P-CH 50V 130MA SOT-23" 200 1000 60 H I L CNN "Description"
+F11 "ON Semiconductor" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C -50 0 130 0 1 0 f
+C 0 -75 5 0 1 0 N
+C 0 -55 5 0 1 0 N
+C 0 75 5 0 1 0 N
+P 2 0 1 0 0 -55 -100 -55 N
+P 3 0 1 0 -200 -100 -120 -100 -120 55 N
+P 3 0 1 0 0 -100 0 0 -100 0 N
+P 3 0 1 0 0 100 0 55 -100 55 N
+P 5 0 1 0 -5 -75 40 -75 40 55 40 75 -5 75 N
+P 2 1 1 0 -100 -55 -100 -75 N
+P 2 1 1 0 -100 -55 -100 -35 N
+P 2 1 1 0 -100 0 -100 -20 N
+P 2 1 1 0 -100 0 -100 20 N
+P 2 1 1 0 -100 75 -100 35 N
+P 2 1 1 0 60 -8 20 -8 N
+P 4 1 1 0 -15 0 -45 20 -45 -20 -15 0 F
+P 4 1 1 0 40 -10 60 20 20 20 40 -10 F
+X G 1 -300 -100 100 R 50 50 1 1 B
+X D 2 0 200 100 D 50 50 1 1 B
+X S 3 0 -200 100 U 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+# my_power_+12V
+#
+DEF my_power_+12V #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "my_power_+12V" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +12V 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# my_power_+5V
+#
+DEF my_power_+5V #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "my_power_+5V" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +5V 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# my_power_GND
+#
+DEF my_power_GND #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -250 50 H I C CNN
+F1 "my_power_GND" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
+X GND 1 0 0 0 D 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# my_power_GNDPWR
+#
+DEF my_power_GNDPWR #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -200 50 H I C CNN
+F1 "my_power_GNDPWR" 0 -130 50 H V C CNN
+F2 "" 0 -50 50 H I C CNN
+F3 "" 0 -50 50 H I C CNN
+DRAW
+P 2 0 1 0 0 -50 0 0 N
+P 3 0 1 8 -40 -50 -50 -80 -50 -80 N
+P 3 0 1 8 -20 -50 -30 -80 -30 -80 N
+P 3 0 1 8 0 -50 -10 -80 -10 -80 N
+P 3 0 1 8 20 -50 10 -80 10 -80 N
+P 3 0 1 8 40 -50 -40 -50 -40 -50 N
+P 4 0 1 8 40 -50 30 -80 30 -80 30 -80 N
+X GNDPWR 1 0 0 0 D 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+#End Library
