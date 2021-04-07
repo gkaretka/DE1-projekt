@@ -33,8 +33,7 @@ Write your text here.
 
 ## Video
 
-*Write your text here*
-### Knobu
+*Write your text here.
 
 
 ## References
