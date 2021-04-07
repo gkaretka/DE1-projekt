@@ -18,6 +18,7 @@ Write your text here.
 
 ## Hardware description
 
+![schematic](img/block_diagram.png)
 ![schematic](img/schematic.png)
 
 
