@@ -18,11 +18,7 @@ Write your text here.
 
 ## Hardware description
 
-<object data="img/schematic.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="img/schematic.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="img/schematic.pdf">Download</a>.</p>
-    </embed>
-</object>
+![schematic](img/schematic.png)
 
 
 ## VHDL modules description and simulations
