@@ -18,8 +18,9 @@ Write your text here.
 
 ## Hardware description
 
-![schematic](img/block_diagram.png)
-![schematic](img/schematic.png)
+![schematic0](img/block_diagram.png)
+![schematic1](img/schematic.png)
+![schematic2](img/arty_connection.png)
 
 
 ## VHDL modules description and simulations
