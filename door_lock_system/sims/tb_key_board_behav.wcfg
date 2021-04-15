@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_key_board_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_key_board" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="5000001fs"></ZoomEndTime>
+      <Cursor1Time time="5000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="222"></NameColumnWidth>
+      <ValueColumnWidth column_width="136"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/tb_key_board/s_clk_100MHz" type="logic">
+      <obj_property name="ElementShortName">s_clk_100MHz</obj_property>
+      <obj_property name="ObjectShortName">s_clk_100MHz</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/s_reset" type="logic">
+      <obj_property name="ElementShortName">s_reset</obj_property>
+      <obj_property name="ObjectShortName">s_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/s_rows" type="array">
+      <obj_property name="ElementShortName">s_rows[0:2][3:0]</obj_property>
+      <obj_property name="ObjectShortName">s_rows[0:2][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/s_row_in" type="array">
+      <obj_property name="ElementShortName">s_row_in[3:0]</obj_property>
+      <obj_property name="ObjectShortName">s_row_in[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/s_col_sel" type="array">
+      <obj_property name="ElementShortName">s_col_sel[2:0]</obj_property>
+      <obj_property name="ObjectShortName">s_col_sel[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/uut_db/key_out" type="array">
+      <obj_property name="ElementShortName">key_out[11:0]</obj_property>
+      <obj_property name="ObjectShortName">key_out[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/s_take_key" type="logic">
+      <obj_property name="ElementShortName">s_take_key</obj_property>
+      <obj_property name="ObjectShortName">s_take_key</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/uut_db/de_bouncer/de_bouncy" type="array">
+      <obj_property name="ElementShortName">de_bouncy[3:0]</obj_property>
+      <obj_property name="ObjectShortName">de_bouncy[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/uut_db/de_bouncer/bouncy" type="array">
+      <obj_property name="ElementShortName">bouncy[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bouncy[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/uut_db/de_bouncer/d_rst" type="logic">
+      <obj_property name="ElementShortName">d_rst</obj_property>
+      <obj_property name="ObjectShortName">d_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/uut_db/d_rst_single_shot" type="logic">
+      <obj_property name="ElementShortName">d_rst_single_shot</obj_property>
+      <obj_property name="ObjectShortName">d_rst_single_shot</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/uut_db/de_bouncer/debounce_array" type="array">
+      <obj_property name="ElementShortName">debounce_array[0:3][2:0]</obj_property>
+      <obj_property name="ObjectShortName">debounce_array[0:3][2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/uut_db/s_col_slow_cnt" type="array">
+      <obj_property name="ElementShortName">s_col_slow_cnt[4:0]</obj_property>
+      <obj_property name="ObjectShortName">s_col_slow_cnt[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/uut_db/s_keyboard_state" type="other">
+      <obj_property name="ElementShortName">s_keyboard_state</obj_property>
+      <obj_property name="ObjectShortName">s_keyboard_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/uut_db/s_col_slow_cnt" type="array">
+      <obj_property name="ElementShortName">s_col_slow_cnt[4:0]</obj_property>
+      <obj_property name="ObjectShortName">s_col_slow_cnt[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_key_board/s_rows" type="array">
+      <obj_property name="ElementShortName">s_rows[0:2][3:0]</obj_property>
+      <obj_property name="ObjectShortName">s_rows[0:2][3:0]</obj_property>
+   </wvobject>
+</wave_config>
