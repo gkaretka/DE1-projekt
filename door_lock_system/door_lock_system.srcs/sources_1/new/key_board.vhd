@@ -47,9 +47,9 @@ architecture Behavioral of key_board is
     constant    fast_cnt_bit_n  : natural :=  4; -- 17 bit for production = 762 Hz counter, 3 bit for testing
     constant    slow_cnt_bit_n  : natural :=  5; -- 26 bit for production = ~2 Hz counter, 5 bit for testing
     
-    signal  bounce_rst          : std_logic;
-    signal  d_rst_single_shot   : std_logic;
-    signal  bounce_rst_sampler  : std_logic_vector(2 - 1 downto 0);
+    signal  s_bounce_rst        : std_logic;
+    signal  s_d_rst_single_shot : std_logic;
+    signal  s_bounce_rst_sampler: std_logic_vector(2 - 1 downto 0);
     
     type    keyboard_stat_t is (COL1_CLEAR, COL1_SETUP, COL1_LOAD,
                                 COL2_CLEAR, COL2_SETUP, COL2_LOAD,
@@ -67,37 +67,37 @@ begin
     port map (
         clk         => clk,
         rst         => rst,
-        d_rst       => d_rst_single_shot,
+        d_rst       => s_d_rst_single_shot,
         
         bouncy      => row_in,
         de_bouncy   => s_row_in_dbn
     );
     
-    d_rst_single_show : process(clk)
+    p_d_rst_single_show : process(clk)
     begin
         if rising_edge(clk) then
             if (rst = '1') then
-                d_rst_single_shot   <=  '0';
-                bounce_rst_sampler  <=  "00";
+                s_d_rst_single_shot     <=  '0';
+                s_bounce_rst_sampler    <=  "00";
             else
-                bounce_rst_sampler  <= bounce_rst & bounce_rst_sampler(0);
-                if (bounce_rst_sampler = "10") then
-                    d_rst_single_shot   <=  '1';
+                s_bounce_rst_sampler    <= s_bounce_rst & s_bounce_rst_sampler(0);
+                if (s_bounce_rst_sampler = "10") then
+                    s_d_rst_single_shot   <=  '1';
                 else
-                    d_rst_single_shot   <=  '0';
+                    s_d_rst_single_shot   <=  '0';
                 end if;
             end if;
         end if;
-    end process d_rst_single_show;
+    end process p_d_rst_single_show;
     
-    row_lookup : process(clk)
+    p_row_lookup : process(clk)
     begin
         if rising_edge(clk) then
             if (rst = '1') then
                 key_out             <=  "000000000000";
                 col_sel             <=  "001";
                 s_col_selector_cnt  <=  "00";
-                bounce_rst          <=  '1';
+                s_bounce_rst        <=  '1';
                 s_keyboard_state    <=  COL1_CLEAR;
                 key_taken           <=  '0';
                 s_col_fast_cnt      <=  "0000";
@@ -105,12 +105,12 @@ begin
             else
                 case s_keyboard_state is
                     when COL1_CLEAR =>
-                        col_sel     <= "001";
-                        bounce_rst  <= '1';
+                        col_sel                 <= "001";
+                        s_bounce_rst            <= '1';
                         s_keyboard_state        <=  COL1_SETUP;
                         s_col_fast_cnt          <= std_logic_vector(unsigned(s_col_fast_cnt) + 1);
                     when COL1_SETUP =>
-                        bounce_rst              <= '0';
+                        s_bounce_rst            <= '0';
                         if (unsigned(s_col_fast_cnt) = 0) then
                             s_keyboard_state    <= COL1_LOAD;
                         else
@@ -132,11 +132,11 @@ begin
                     -- col 2
                     when COL2_CLEAR =>
                         col_sel             <= "010";
-                        bounce_rst          <= '1';
+                        s_bounce_rst        <= '1';
                         s_keyboard_state    <=  COL2_SETUP;
                         s_col_fast_cnt      <= std_logic_vector(unsigned(s_col_fast_cnt) + 1);
                     when COL2_SETUP =>
-                        bounce_rst              <= '0';
+                        s_bounce_rst            <= '0';
                         if (unsigned(s_col_fast_cnt) = 0) then
                             s_keyboard_state    <= COL2_LOAD;
                         else
@@ -159,11 +159,11 @@ begin
                     -- col 3
                     when COL3_CLEAR =>
                         col_sel                 <= "100";
-                        bounce_rst              <= '1';
+                        s_bounce_rst            <= '1';
                         s_keyboard_state        <=  COL3_SETUP;
                         s_col_fast_cnt          <= std_logic_vector(unsigned(s_col_fast_cnt) + 1);
                     when COL3_SETUP =>
-                        bounce_rst              <= '0';
+                        s_bounce_rst            <= '0';
                         if (unsigned(s_col_fast_cnt) = 0) then
                             s_keyboard_state    <= COL3_LOAD;
                         else
@@ -203,6 +203,6 @@ begin
                 end case;
             end if;
         end if;
-    end process;
+    end process p_row_lookup;
 
 end Behavioral;

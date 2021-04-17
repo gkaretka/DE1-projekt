@@ -54,7 +54,7 @@ begin
     de_bouncy(2)   <=  '1' when unsigned(debounce_array(2)) > 4 else '0';
     de_bouncy(3)   <=  '1' when unsigned(debounce_array(3)) > 4 else '0';
     
-    debouce : process(clk)
+    p_debouce : process(clk)
     begin
         if rising_edge(clk) then
             if (rst = '1') then
@@ -93,6 +93,6 @@ begin
                 end if;
             end if;
         end if;
-    end process;
+    end process p_debouce;
 
 end Behavioral;

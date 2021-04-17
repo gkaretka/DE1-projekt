@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 04/15/2021 09:18:54 PM
+-- Create Date: 04/17/2021 10:07:52 PM
 -- Design Name: 
--- Module Name: tb_key_board - Behavioral
+-- Module Name: tb_keyboard_withraw_input - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -21,7 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use ieee.numeric_std.all;
+use work.typedef.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,11 +32,11 @@ use ieee.numeric_std.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity tb_key_board is
+entity tb_keyboard_withraw_input is
 --  Port ( );
-end tb_key_board;
+end tb_keyboard_withraw_input;
 
-architecture Behavioral of tb_key_board is
+architecture Behavioral of tb_keyboard_withraw_input is
     constant c_CLK_100MHZ_PERIOD : time    := 10 ns;
 
     --Local signals
@@ -49,20 +49,38 @@ architecture Behavioral of tb_key_board is
     signal s_col_sel    : STD_LOGIC_VECTOR (3 - 1 downto 0);
     signal s_row_in     : STD_LOGIC_VECTOR (4 - 1 downto 0);
     
+    signal s_key_out    : STD_LOGIC_VECTOR (12 - 1 downto 0);
     signal s_take_key   : STD_LOGIC;
+    
+    signal s_cmd        : cmd_t;    
+    signal s_data       : natural;
 begin
 
-    -- (Unit Under Test)
-    uut_db : entity work.key_board
+    -- (Unit Under Test 1) -- keyboard
+    uut_db_1 : entity work.key_board
         port map(
             clk         => s_clk_100MHz,
             rst         => s_reset,
             
             row_in      => s_row_in,
             col_sel     => s_col_sel,
+            key_taken   => s_take_key,
+            key_out     => s_key_out
+        );
+    
+    -- (Unit Under Test 2) -- keyboard decoder
+    uut_db_2 : entity work.keyboard_decoder
+        port map(
+            clk         => s_clk_100MHz,
+            rst         => s_reset,
+            
+            cmd         => s_cmd,
+            data        => s_data,
+            
+            key_out     => s_key_out,
             key_taken   => s_take_key
         );
-
+        
     --------------------------------------------------------------------
     -- Clock generation process
     --------------------------------------------------------------------
@@ -88,7 +106,7 @@ begin
         wait for 20 ns;
         s_reset <= '0';
         wait;
-    end process p_reset_gen;
+    end process p_reset_gen;        
 
     -- button simulation
     p_update : process
@@ -102,7 +120,7 @@ begin
         end if;
         wait for 1 ns;
     end process p_update;
-
+    
     --------------------------------------------------------------------
     -- Data generation process
     --------------------------------------------------------------------
@@ -114,7 +132,7 @@ begin
         wait for 500 ns;
         s_rows(2)  <=   "0000";
         s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "1000";        
+        s_rows(0)  <=   "0001"; -- 7
         wait for 700 ns; -- wait for recognition
         s_rows(2)  <=   "0000";
         s_rows(1)  <=   "0000";
@@ -123,7 +141,7 @@ begin
         
         -- Set data
         s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0100";
+        s_rows(1)  <=   "0010"; -- 5
         s_rows(0)  <=   "0000";        
         wait for 700 ns; -- wait for recognition
         s_rows(2)  <=   "0000";
@@ -131,7 +149,7 @@ begin
         s_rows(0)  <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
         
-        s_rows(2)  <=   "0010";
+        s_rows(2)  <=   "0100"; -- 3
         s_rows(1)  <=   "0000";
         s_rows(0)  <=   "0000";        
         wait for 700 ns; -- wait for recognition
@@ -142,6 +160,6 @@ begin
         
         report "Stimulus process finished" severity note;
         wait;
-    end process p_stimulus;
+    end process p_stimulus;    
 
 end Behavioral;
