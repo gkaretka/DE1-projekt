@@ -21,6 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use work.typedef.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -33,7 +34,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity lock_controller is
     Port (
-        
+        s_cmd    : in cmd_t;    
+        s_number : in natural
     );
 end lock_controller;
 
