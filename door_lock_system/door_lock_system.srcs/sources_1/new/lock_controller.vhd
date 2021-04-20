@@ -56,7 +56,7 @@ entity lock_controller is
 end lock_controller;
 
 architecture Behavioral of lock_controller is
-    constant c_cnt_bit_cnt  : natural := 5; -- 21 for production, 5 for simulation
+    constant c_cnt_bit_cnt  : natural := 10; -- 21 for production, 10 for simulation so we can test new pin
 
     type lock_machine_state_t is (LOCKED, CHECK_PIN, FAILED, UNLOCKED);
     

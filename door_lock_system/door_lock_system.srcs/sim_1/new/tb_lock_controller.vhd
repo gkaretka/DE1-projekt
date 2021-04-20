@@ -101,7 +101,7 @@ begin
     --------------------------------------------------------------------
     p_clk_gen : process
     begin
-        while now < 10000 ns loop         -- 75 periods of 100MHz clock
+        while now < 30000 ns loop         -- 75 periods of 100MHz clock
             s_clk_100MHz <= '0';
             wait for c_CLK_100MHZ_PERIOD / 2;
             s_clk_100MHz <= '1';
