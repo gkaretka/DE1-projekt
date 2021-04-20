@@ -26,12 +26,12 @@
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-package typedef is
+package keyboard_decoder_typedef is
     type cmd_t is (NUMBER, SET, RESET, NONE);
 end package;
 
 library IEEE;
-use work.typedef.all;
+use work.keyboard_decoder_typedef.all;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity keyboard_decoder is

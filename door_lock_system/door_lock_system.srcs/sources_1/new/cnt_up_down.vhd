@@ -54,12 +54,7 @@ begin
                 if (cnt_up_i = '1') then
                     s_cnt_local <= s_cnt_local + 1;
                 else
-
-                -- TEST COUNTER DIRECTION HERE
-
-
-                      s_cnt_local <= s_cnt_local - 1;
-
+                    s_cnt_local <= s_cnt_local - 1;
                 end if;
             end if;
         end if;

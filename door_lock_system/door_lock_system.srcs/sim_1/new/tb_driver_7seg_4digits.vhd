@@ -60,7 +60,11 @@ begin
              data1_i  =>  s_data1_i,
              data2_i  =>  s_data2_i,
              data3_i  =>  s_data3_i,
-
+            
+             data4_i  =>  "0000",
+             data5_i  =>  "0000",
+             data6_i  =>  "0000",
+             data7_i  =>  "0000",            
          
              dp_i     =>  s_dp_i,
 

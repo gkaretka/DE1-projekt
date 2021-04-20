@@ -33,10 +33,8 @@ end entity clock_enable;
 -- Architecture body for clock enable
 ------------------------------------------------------------------------
 architecture Behavioral of clock_enable is
-
     -- Local counter
     signal s_cnt_local : natural;
-
 begin
     --------------------------------------------------------------------
     -- p_clk_ena:
