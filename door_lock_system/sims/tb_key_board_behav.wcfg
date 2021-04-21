@@ -3,66 +3,50 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_lock_controller_behav.wdb" id="1">
+      <db_ref path="tb_lock_controller_change_pin_behav.wdb" id="1">
          <top_modules>
             <top_module name="keyboard_decoder_typedef" />
             <top_module name="lock_controller_typedef" />
-            <top_module name="tb_lock_controller" />
+            <top_module name="tb_lock_controller_change_pin" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="7000001fs"></ZoomEndTime>
-      <Cursor1Time time="7000000fs"></Cursor1Time>
+      <ZoomEndTime time="36000001fs"></ZoomEndTime>
+      <Cursor1Time time="36000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="222"></NameColumnWidth>
-      <ValueColumnWidth column_width="126"></ValueColumnWidth>
+      <ValueColumnWidth column_width="118"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
-   <wvobject fp_name="/tb_lock_controller/s_reset" type="logic">
-      <obj_property name="ElementShortName">s_reset</obj_property>
-      <obj_property name="ObjectShortName">s_reset</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_lock_controller/s_clk_100MHz" type="logic">
+   <WVObjectSize size="7" />
+   <wvobject fp_name="/tb_lock_controller_change_pin/s_clk_100MHz" type="logic">
       <obj_property name="ElementShortName">s_clk_100MHz</obj_property>
       <obj_property name="ObjectShortName">s_clk_100MHz</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_lock_controller/s_data" type="other">
+   <wvobject fp_name="/tb_lock_controller_change_pin/s_reset" type="logic">
+      <obj_property name="ElementShortName">s_reset</obj_property>
+      <obj_property name="ObjectShortName">s_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_lock_controller_change_pin/s_data" type="other">
       <obj_property name="ElementShortName">s_data</obj_property>
       <obj_property name="ObjectShortName">s_data</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_lock_controller/s_cmd" type="other">
+   <wvobject fp_name="/tb_lock_controller_change_pin/s_cmd" type="other">
       <obj_property name="ElementShortName">s_cmd</obj_property>
       <obj_property name="ObjectShortName">s_cmd</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_lock_controller/pin" type="array">
+   <wvobject fp_name="/tb_lock_controller_change_pin/pin" type="array">
       <obj_property name="ElementShortName">pin[0:3]</obj_property>
       <obj_property name="ObjectShortName">pin[0:3]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_lock_controller/uut_db_3/s_30s_cnt" type="array">
-      <obj_property name="ElementShortName">s_30s_cnt[4:0]</obj_property>
-      <obj_property name="ObjectShortName">s_30s_cnt[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_lock_controller/uut_db_3/s_number_queue" type="array">
+   <wvobject fp_name="/tb_lock_controller_change_pin/s_number_queue" type="array">
       <obj_property name="ElementShortName">s_number_queue[0:3]</obj_property>
       <obj_property name="ObjectShortName">s_number_queue[0:3]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_lock_controller/uut_db_3/s_lock_state" type="other">
-      <obj_property name="ElementShortName">s_lock_state</obj_property>
-      <obj_property name="ObjectShortName">s_lock_state</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_lock_controller/uut_db_3/s_f_atps_cnt" type="other">
-      <obj_property name="ElementShortName">s_f_atps_cnt</obj_property>
-      <obj_property name="ObjectShortName">s_f_atps_cnt</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_lock_controller/uut_db_3/s_f_tim_enalbe" type="logic">
-      <obj_property name="ElementShortName">s_f_tim_enalbe</obj_property>
-      <obj_property name="ObjectShortName">s_f_tim_enalbe</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_lock_controller/uut_db_3/s_f_tim_done" type="logic">
-      <obj_property name="ElementShortName">s_f_tim_done</obj_property>
-      <obj_property name="ObjectShortName">s_f_tim_done</obj_property>
+   <wvobject fp_name="/tb_lock_controller_change_pin/uut_db_3/s_queue_pointer" type="other">
+      <obj_property name="ElementShortName">s_queue_pointer</obj_property>
+      <obj_property name="ObjectShortName">s_queue_pointer</obj_property>
    </wvobject>
 </wave_config>

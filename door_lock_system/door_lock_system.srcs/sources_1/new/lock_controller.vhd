@@ -47,6 +47,7 @@ entity lock_controller is
         
         pin             : in    pin_queue_t;
         number_queue    : out   pin_queue_t;
+        str_new_pin     : out   std_logic;
         
         cmd             : in    cmd_t;    
         data            : in    natural;
@@ -83,6 +84,7 @@ begin
                 s_f_atps_cnt        <=  0;
                 s_30s_cnt           <= (others => '0');
                 s_f_tim_enalbe      <=  '0';
+                str_new_pin         <=  '0';
                 
                 s_number_queue(0)   <=  0;
                 s_number_queue(1)   <=  0;
@@ -120,19 +122,19 @@ begin
                         end if;
                         
                     when FAILED =>
-                        if (s_f_atps_cnt = 3) then
+                        if (s_f_tim_enalbe = '0' and s_f_atps_cnt = 3) then
                             s_f_tim_enalbe  <= '1';
                             s_30s_cnt       <=  std_logic_vector(unsigned(s_30s_cnt) + 1);
                             -- run timer for 30 seconds
                         elsif (s_f_tim_enalbe = '1' and s_f_tim_done = '0') then
-                            if (unsigned(s_30s_cnt) > 0) then
-                                s_30s_cnt       <=  std_logic_vector(unsigned(s_30s_cnt) + 1);
-                            else 
+                            if (unsigned(s_30s_cnt) = 0) then
                                 s_f_tim_done    <=  '1';
+                                s_f_atps_cnt    <= 0;
+                            else
+                                s_30s_cnt       <=  std_logic_vector(unsigned(s_30s_cnt) + 1); 
                             end if;
                         else
                             s_30s_cnt       <= (others => '0');
-                            s_f_atps_cnt    <= 0;
                             s_f_tim_enalbe  <= '0';
                             s_f_tim_done    <= '0';
                             s_lock_state    <= LOCKED;
@@ -148,9 +150,39 @@ begin
                         if (s_f_tim_enalbe = '0') then
                             fpga_do         <= '1';
                             s_f_tim_enalbe  <= '1';
+                            
+                            s_queue_pointer     <=  0;
+                            s_number_queue(0)   <=  0;
+                            s_number_queue(1)   <=  0;
+                            s_number_queue(2)   <=  0;
+                            s_number_queue(3)   <=  0;
+                            
                             s_30s_cnt       <=  std_logic_vector(unsigned(s_30s_cnt) + 1);
                             -- run timer for 30 seconds
                         elsif (s_f_tim_enalbe = '1' and s_f_tim_done = '0') then
+                            case cmd is
+                                when NUMBER => -- number input -- new pin
+                                    s_number_queue(s_queue_pointer) <= data;
+                                    if (s_queue_pointer = 3) then
+                                        s_queue_pointer       <=  0;
+                                    else
+                                        s_queue_pointer <= s_queue_pointer + 1;
+                                    end if;
+                                
+                                when SET =>
+                                    str_new_pin         <=  '1';
+                                    s_lock_state        <= LOCKED;
+                                
+                                when RESET => -- reset signal input
+                                    s_queue_pointer     <=  0;
+                                    s_number_queue(0)   <=  0;
+                                    s_number_queue(1)   <=  0;
+                                    s_number_queue(2)   <=  0;
+                                    s_number_queue(3)   <=  0;
+                                when others =>
+                                    -- do nothing
+                            end case;
+                        
                             if (unsigned(s_30s_cnt) = 0) then
                                 s_f_tim_done    <=  '1';
                             else

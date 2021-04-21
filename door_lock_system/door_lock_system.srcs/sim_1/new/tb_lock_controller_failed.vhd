@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 04/17/2021 10:07:52 PM
+-- Create Date: 04/21/2021 08:44:44 AM
 -- Design Name: 
--- Module Name: tb_keyboard_withraw_input - Behavioral
+-- Module Name: tb_lock_controller_failed - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -22,6 +22,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use work.keyboard_decoder_typedef.all;
+use work.lock_controller_typedef.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,11 +33,11 @@ use work.keyboard_decoder_typedef.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity tb_keyboard_withraw_input is
+entity tb_lock_controller_failed is
 --  Port ( );
-end tb_keyboard_withraw_input;
+end tb_lock_controller_failed;
 
-architecture Behavioral of tb_keyboard_withraw_input is
+architecture Behavioral of tb_lock_controller_failed is
     constant c_CLK_100MHZ_PERIOD : time    := 10 ns;
 
     --Local signals
@@ -52,7 +53,9 @@ architecture Behavioral of tb_keyboard_withraw_input is
     signal s_key_out    : STD_LOGIC_VECTOR (12 - 1 downto 0);
     signal s_take_key   : STD_LOGIC;
     
-    signal s_cmd        : cmd_t;    
+    signal pin          : pin_queue_t;
+    
+    signal s_cmd        : cmd_t;
     signal s_data       : natural;
 begin
 
@@ -81,12 +84,24 @@ begin
             key_taken   => s_take_key
         );
         
+    -- (Unit Under Test 3) -- lock controller
+    uut_db_3 : entity work.lock_controller
+        port map(
+            clk         => s_clk_100MHz,
+            rst         => s_reset,
+            
+            pin         => pin,
+            
+            cmd         => s_cmd,
+            data        => s_data
+        );
+        
     --------------------------------------------------------------------
     -- Clock generation process
     --------------------------------------------------------------------
     p_clk_gen : process
     begin
-        while now < 12000 ns loop         -- 75 periods of 100MHz clock
+        while now < 36000 ns loop         -- 75 periods of 100MHz clock
             s_clk_100MHz <= '0';
             wait for c_CLK_100MHZ_PERIOD / 2;
             s_clk_100MHz <= '1';
@@ -128,58 +143,29 @@ begin
     begin
         report "Stimulus process started" severity note;
         
+        -- pin stored internally
+        pin(0)      <=  7;
+        pin(1)      <=  5;
+        pin(2)      <=  3;
+        pin(3)      <=  3;
+        
+        -- fail first 3 wait and then ulock
+        
         -- Set data
         wait for 500 ns;
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0001"; -- 7
-        wait for 700 ns; -- wait for recognition
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";
-        wait for 700 ns; -- delay betwenn clicks
         
-        -- Set data
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0010"; -- 5
-        s_rows(0)  <=   "0000";        
-        wait for 700 ns; -- wait for recognition
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";
-        wait for 700 ns; -- delay betwenn clicks
-        
-        s_rows(2)  <=   "0100"; -- 3
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";        
-        wait for 700 ns; -- wait for recognition
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";
-        wait for 700 ns; -- delay betwenn clicks
-        
-        s_rows(2)  <=   "0100"; -- 3
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";        
-        wait for 700 ns; -- wait for recognition
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";
-        wait for 700 ns; -- delay betwenn clicks
-        
-        
-        -- NEXT DATA ----------------------------------------------
-        s_rows(2)   <=   "0100";
-        s_rows(1)   <=   "0000";
-        s_rows(0)   <=   "0000"; -- 3
+        -- FAILED DATA 1 ----------------------------
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0001";
+        s_rows(0)   <=   "0000"; -- 8
         wait for 700 ns; -- wait for recognition
         s_rows(2)   <=   "0000";
         s_rows(1)   <=   "0000";
         s_rows(0)   <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
 
-        s_rows(2)   <=   "0100";
-        s_rows(1)   <=   "0000"; -- 3
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0010"; -- 5
         s_rows(0)   <=   "0000";        
         wait for 700 ns; -- wait for recognition
         s_rows(2)   <=   "0000";
@@ -187,8 +173,8 @@ begin
         s_rows(0)   <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
         
-        s_rows(2)   <=   "0000"; -- 5
-        s_rows(1)   <=   "0010";
+        s_rows(2)   <=   "0100"; -- 3
+        s_rows(1)   <=   "0000";
         s_rows(0)   <=   "0000";        
         wait for 700 ns; -- wait for recognition
         s_rows(2)   <=   "0000";
@@ -196,19 +182,122 @@ begin
         s_rows(0)   <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
         
-        s_rows(2)   <=   "0000"; -- 7
+        s_rows(2)   <=   "0100"; -- 3
         s_rows(1)   <=   "0000";
-        s_rows(0)   <=   "0001";        
+        s_rows(0)   <=   "0000";        
         wait for 700 ns; -- wait for recognition
         s_rows(2)   <=   "0000";
         s_rows(1)   <=   "0000";
         s_rows(0)   <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
         
-        -- SET KEY
+        -- FAILED DATA 2 ----------------------------
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0001";
+        s_rows(0)   <=   "0000"; -- 8
+        wait for 700 ns; -- wait for recognition
         s_rows(2)   <=   "0000";
         s_rows(1)   <=   "0000";
-        s_rows(0)   <=   "1000";        
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0010"; -- 5
+        s_rows(0)   <=   "0000";        
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+        
+        s_rows(2)   <=   "0100"; -- 3
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";        
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+        
+        s_rows(2)   <=   "0100"; -- 3
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";        
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+        
+        -- FAILED DATA 3 ----------------------------
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0001";
+        s_rows(0)   <=   "0000"; -- 8
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0010"; -- 5
+        s_rows(0)   <=   "0000";        
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+        
+        s_rows(2)   <=   "0100"; -- 3
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";        
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+        
+        s_rows(2)   <=   "0100"; -- 3
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";        
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        
+        wait for 11 us;
+        -- NOW WE WANT TO UNLOCK
+        -- Set data
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0001"; -- 7
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+        
+        -- Set data
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0010"; -- 5
+        s_rows(0)   <=   "0000";        
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+        
+        s_rows(2)   <=   "0100"; -- 3
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";        
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+        
+        s_rows(2)   <=   "0100"; -- 3
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";        
         wait for 700 ns; -- wait for recognition
         s_rows(2)   <=   "0000";
         s_rows(1)   <=   "0000";

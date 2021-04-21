@@ -45,7 +45,7 @@ end key_board;
 
 architecture Behavioral of key_board is
     constant    fast_cnt_bit_n  : natural :=  4; -- 17 bit for production = 762 Hz counter, 3 bit for testing
-    constant    slow_cnt_bit_n  : natural :=  5; -- 26 bit for production = ~2 Hz counter, 5 bit for testing
+    constant    slow_cnt_bit_n  : natural :=  6; -- 26 bit for production = ~2 Hz counter, 6 bit for testing
     
     signal  s_bounce_rst        : std_logic;
     signal  s_d_rst_single_shot : std_logic;
@@ -101,7 +101,7 @@ begin
                 s_keyboard_state    <=  COL1_CLEAR;
                 key_taken           <=  '0';
                 s_col_fast_cnt      <=  "0000";
-                s_col_slow_cnt      <=  "00000";
+                s_col_slow_cnt      <=  "000000";
             else
                 case s_keyboard_state is
                     when COL1_CLEAR =>
@@ -187,11 +187,13 @@ begin
                     when KEY_PRESSED_SUCCESFULLY =>
                         -- put key for one cycle out, then end
                         key_taken           <=  '1';
+                        s_bounce_rst        <=  '1';
                         s_keyboard_state    <=  CLEAR_ALL;
                         s_col_slow_cnt      <=  std_logic_vector(unsigned(s_col_slow_cnt) + 1);
                         
                     when CLEAR_ALL =>    
                         key_taken           <=  '0';
+                        s_bounce_rst        <=  '0';
                         if (unsigned(s_col_slow_cnt) = 0) then -- pause between key presses
                             s_keyboard_state    <=  COL1_CLEAR;
                         else

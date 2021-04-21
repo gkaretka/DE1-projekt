@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 04/17/2021 10:07:52 PM
+-- Create Date: 04/21/2021 09:31:24 AM
 -- Design Name: 
--- Module Name: tb_keyboard_withraw_input - Behavioral
+-- Module Name: tb_lock_controller_change_pin - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -22,6 +22,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use work.keyboard_decoder_typedef.all;
+use work.lock_controller_typedef.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,11 +33,11 @@ use work.keyboard_decoder_typedef.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity tb_keyboard_withraw_input is
+entity tb_lock_controller_change_pin is
 --  Port ( );
-end tb_keyboard_withraw_input;
+end tb_lock_controller_change_pin;
 
-architecture Behavioral of tb_keyboard_withraw_input is
+architecture Behavioral of tb_lock_controller_change_pin is
     constant c_CLK_100MHZ_PERIOD : time    := 10 ns;
 
     --Local signals
@@ -44,16 +45,23 @@ architecture Behavioral of tb_keyboard_withraw_input is
     signal s_reset      : std_logic;
     
     type s_row_type is array (0 to 3 - 1) of std_logic_vector(4 - 1 downto 0);
-    signal s_rows : s_row_type;
+    signal s_rows           : s_row_type;
     
-    signal s_col_sel    : STD_LOGIC_VECTOR (3 - 1 downto 0);
-    signal s_row_in     : STD_LOGIC_VECTOR (4 - 1 downto 0);
+    signal s_col_sel        : STD_LOGIC_VECTOR (3 - 1 downto 0);
+    signal s_row_in         : STD_LOGIC_VECTOR (4 - 1 downto 0);
     
-    signal s_key_out    : STD_LOGIC_VECTOR (12 - 1 downto 0);
-    signal s_take_key   : STD_LOGIC;
+    signal s_key_out        : STD_LOGIC_VECTOR (12 - 1 downto 0);
+    signal s_take_key       : STD_LOGIC;
     
-    signal s_cmd        : cmd_t;    
-    signal s_data       : natural;
+    signal pin              : pin_queue_t;
+    signal s_number_queue   : pin_queue_t;
+    
+    signal s_fpga_do        : std_logic;
+    
+    signal s_str_n_pin      : std_logic;
+    
+    signal s_cmd            : cmd_t;
+    signal s_data           : natural;
 begin
 
     -- (Unit Under Test 1) -- keyboard
@@ -81,12 +89,42 @@ begin
             key_taken   => s_take_key
         );
         
+    -- (Unit Under Test 3) -- lock controller
+    uut_db_3 : entity work.lock_controller
+        port map(
+            clk             => s_clk_100MHz,
+            rst             => s_reset,
+            
+            pin             => pin,
+            
+            str_new_pin     => s_str_n_pin,
+            
+            number_queue    => s_number_queue,
+            
+            fpga_do         => s_fpga_do,
+            
+            cmd             => s_cmd,
+            data            => s_data
+        );
+
+    -- (Unit Under Test 3) -- pin storage
+    uut_db_4 : entity work.pin_storage
+        port map(
+            clk             => s_clk_100MHz,
+            rst             => s_reset,
+            
+            new_pin         => s_number_queue,
+            store_new_pin   => s_str_n_pin,
+            
+            currnet_pin     => pin
+        );
+        
     --------------------------------------------------------------------
     -- Clock generation process
     --------------------------------------------------------------------
     p_clk_gen : process
     begin
-        while now < 12000 ns loop         -- 75 periods of 100MHz clock
+        while now < 36000 ns loop         -- 75 periods of 100MHz clock
             s_clk_100MHz <= '0';
             wait for c_CLK_100MHZ_PERIOD / 2;
             s_clk_100MHz <= '1';
@@ -128,47 +166,52 @@ begin
     begin
         report "Stimulus process started" severity note;
         
+        -- pin stored internally in pin storage (7 5 3 3)
+        
+        -- fail first 3 wait and then ulock
+        
         -- Set data
         wait for 500 ns;
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0001"; -- 7
+        
+        -- CORRECT DATA 1 ----------------------------
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0001"; -- 7
         wait for 700 ns; -- wait for recognition
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
+        wait for 700 ns; -- delay betwenn clicks
+
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0010"; -- 5
+        s_rows(0)   <=   "0000";        
+        wait for 700 ns; -- wait for recognition
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
         
-        -- Set data
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0010"; -- 5
-        s_rows(0)  <=   "0000";        
+        s_rows(2)   <=   "0100"; -- 3
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";        
         wait for 700 ns; -- wait for recognition
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
         
-        s_rows(2)  <=   "0100"; -- 3
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";        
+        s_rows(2)   <=   "0100"; -- 3
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";        
         wait for 700 ns; -- wait for recognition
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";
+        s_rows(2)   <=   "0000";
+        s_rows(1)   <=   "0000";
+        s_rows(0)   <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
         
-        s_rows(2)  <=   "0100"; -- 3
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";        
-        wait for 700 ns; -- wait for recognition
-        s_rows(2)  <=   "0000";
-        s_rows(1)  <=   "0000";
-        s_rows(0)  <=   "0000";
-        wait for 700 ns; -- delay betwenn clicks
-        
-        
-        -- NEXT DATA ----------------------------------------------
+        wait for 1000 ns;
+        -- CORRECT DATA 1 ----------------------------
         s_rows(2)   <=   "0100";
         s_rows(1)   <=   "0000";
         s_rows(0)   <=   "0000"; -- 3
@@ -205,6 +248,7 @@ begin
         s_rows(0)   <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
         
+        wait for 1000 ns;
         -- SET KEY
         s_rows(2)   <=   "0000";
         s_rows(1)   <=   "0000";
