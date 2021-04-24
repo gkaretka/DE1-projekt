@@ -73,7 +73,6 @@ begin
     bin_cnt0 : entity work.cnt_up_down
         generic map(
             g_CNT_WIDTH =>  2
-            --- WRITE YOUR CODE HERE
         )
         port map(
         
@@ -82,7 +81,6 @@ begin
              en_i       =>  s_en,
              cnt_up_i   =>  '0',
              cnt_o      =>  s_cnt
-            --- WRITE YOUR CODE HERE
         );
 
     --------------------------------------------------------------------
@@ -109,19 +107,16 @@ begin
                 dig_o <= "0111";
 
             when "10" =>
-                --- WRITE YOUR CODE HERE
                 s_hex <= data2_i;
                 dp_o  <= dp_i(2);
                 dig_o <= "1011";
 
             when "01" =>
-                --- WRITE YOUR CODE HERE
                 s_hex <= data1_i;
                 dp_o  <= dp_i(1);
                 dig_o <= "1101";
 
             when others =>
-                --- WRITE YOUR CODE HERE
                 s_hex <= data0_i;
                 dp_o  <= dp_i(0);
                 dig_o <= "1110";

@@ -167,8 +167,9 @@ begin
         report "Stimulus process started" severity note;
         
         -- pin stored internally in pin storage (7 5 3 3)
+        -- for more info see pin_storage module
         
-        -- fail first 3 wait and then ulock
+        -- unlock and update
         
         -- Set data
         wait for 500 ns;

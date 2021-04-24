@@ -49,6 +49,10 @@ entity lock_controller is
         number_queue    : out   pin_queue_t;
         str_new_pin     : out   std_logic;
         
+        unlocked_state  : out   std_logic;
+        locked_state    : out   std_logic;
+        checking_state  : out   std_logic;
+        
         cmd             : in    cmd_t;    
         data            : in    natural;
         
@@ -69,9 +73,15 @@ architecture Behavioral of lock_controller is
     signal s_f_tim_done     :   std_logic;
     signal s_f_tim_enalbe   :   std_logic;
     signal s_f_atps_cnt     :   natural;
+    signal s_str_new_pin    :   std_logic;
 begin
     
     number_queue    <=  s_number_queue;
+    str_new_pin     <=  s_str_new_pin;
+    
+    unlocked_state  <=  '0' when (s_lock_state = LOCKED or s_lock_state = CHECK_PIN or s_lock_state = FAILED) else '1';
+    locked_state    <=  '0' when (s_lock_state = UNLOCKED or s_lock_state = CHECK_PIN) else '1';
+    checking_state  <=  '0' when (s_lock_state = UNLOCKED or s_lock_state = LOCKED or s_lock_state = FAILED) else '1';
     
     p_keyboard_data : process (clk)
     begin
@@ -84,7 +94,7 @@ begin
                 s_f_atps_cnt        <=  0;
                 s_30s_cnt           <= (others => '0');
                 s_f_tim_enalbe      <=  '0';
-                str_new_pin         <=  '0';
+                s_str_new_pin       <=  '0';
                 
                 s_number_queue(0)   <=  0;
                 s_number_queue(1)   <=  0;
@@ -110,7 +120,19 @@ begin
                                 s_number_queue(2)   <=  0;
                                 s_number_queue(3)   <=  0;
                             when others =>
-                                -- do nothing
+                                if (s_str_new_pin = '1') then
+                                    s_str_new_pin       <=  '0';
+                                    s_queue_pointer     <=  0;
+                                    s_number_queue(0)   <=  0;
+                                    s_number_queue(1)   <=  0;
+                                    s_number_queue(2)   <=  0;
+                                    s_number_queue(3)   <=  0;
+                                end if;
+
+                                fpga_do         <=  '0';
+                                s_30s_cnt       <= (others => '0');
+                                s_f_tim_enalbe  <= '0';
+                                s_f_tim_done    <= '0';
                         end case;
                         
                     when CHECK_PIN =>
@@ -150,6 +172,7 @@ begin
                         if (s_f_tim_enalbe = '0') then
                             fpga_do         <= '1';
                             s_f_tim_enalbe  <= '1';
+                            s_f_atps_cnt    <= 0;
                             
                             s_queue_pointer     <=  0;
                             s_number_queue(0)   <=  0;
@@ -170,15 +193,19 @@ begin
                                     end if;
                                 
                                 when SET =>
-                                    str_new_pin         <=  '1';
+                                    s_str_new_pin       <=  '1';
                                     s_lock_state        <= LOCKED;
                                 
                                 when RESET => -- reset signal input
-                                    s_queue_pointer     <=  0;
-                                    s_number_queue(0)   <=  0;
-                                    s_number_queue(1)   <=  0;
-                                    s_number_queue(2)   <=  0;
-                                    s_number_queue(3)   <=  0;
+                                    if (s_queue_pointer = 0) then   -- two times pressed RESET mean we lock system
+                                        s_lock_state        <= LOCKED;
+                                    else
+                                        s_queue_pointer     <=  0;
+                                        s_number_queue(0)   <=  0;
+                                        s_number_queue(1)   <=  0;
+                                        s_number_queue(2)   <=  0;
+                                        s_number_queue(3)   <=  0;
+                                    end if;
                                 when others =>
                                     -- do nothing
                             end case;
