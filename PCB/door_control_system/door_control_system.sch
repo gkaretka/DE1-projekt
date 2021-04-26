@@ -2073,4 +2073,61 @@ Text GLabel 6575 4225 2    50   Input ~ 0
 UNLOCKED
 Text GLabel 6575 4575 2    50   Input ~ 0
 CHECKING
+$Comp
+L Switch:SW_MEC_5G SW13
+U 1 1 6088D737
+P 2875 4650
+F 0 "SW13" H 2875 4935 50  0000 C CNN
+F 1 "SW_MEC_5G" H 2875 4844 50  0000 C CNN
+F 2 "" H 2875 4850 50  0001 C CNN
+F 3 "http://www.apem.com/int/index.php?controller=attachment&id_attachment=488" H 2875 4850 50  0001 C CNN
+	1    2875 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L my_power:VCC #PWR015
+U 1 1 60891AF7
+P 3275 4650
+F 0 "#PWR015" H 3275 4500 50  0001 C CNN
+F 1 "VCC" H 3290 4823 50  0000 C CNN
+F 2 "" H 3275 4650 50  0001 C CNN
+F 3 "" H 3275 4650 50  0001 C CNN
+	1    3275 4650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3275 4650 3075 4650
+Wire Wire Line
+	2675 4650 2575 4650
+Text GLabel 2400 4650 0    50   Input ~ 0
+RST
+$Comp
+L Device:R R30
+U 1 1 608FFA4E
+P 2575 4875
+F 0 "R30" V 2368 4875 50  0000 C CNN
+F 1 "10k" V 2459 4875 50  0000 C CNN
+F 2 "" V 2505 4875 50  0001 C CNN
+F 3 "~" H 2575 4875 50  0001 C CNN
+	1    2575 4875
+	1    0    0    -1  
+$EndComp
+$Comp
+L my_power:GND #PWR010
+U 1 1 60901309
+P 2575 5125
+F 0 "#PWR010" H 2575 4875 50  0001 C CNN
+F 1 "GND" H 2650 4975 50  0000 R CNN
+F 2 "" H 2575 5125 50  0001 C CNN
+F 3 "" H 2575 5125 50  0001 C CNN
+	1    2575 5125
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2575 5125 2575 5025
+Wire Wire Line
+	2575 4725 2575 4650
+Connection ~ 2575 4650
+Wire Wire Line
+	2400 4650 2575 4650
 $EndSCHEMATC

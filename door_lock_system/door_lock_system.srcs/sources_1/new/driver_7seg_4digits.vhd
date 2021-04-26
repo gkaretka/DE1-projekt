@@ -56,10 +56,10 @@ architecture Behavioral of driver_7seg_4digits is
 begin
     --------------------------------------------------------------------
     -- Instance (copy) of clock_enable entity generates an enable pulse
-    -- every 4 ms
+    -- every 4 ms (for testing, 100ns)
     clk_en0 : entity work.clock_enable
         generic map(
-            g_MAX  => 4
+            g_MAX  => 10
         )
         port map(
              clk     => clk,
