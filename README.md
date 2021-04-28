@@ -129,6 +129,19 @@ Basically stores pin in high level struture. This module allows changing of the 
 ### display driver
 It has a common cathode. The display features one decimal point per digit, and individually controllable apostrophe and colon points.
 4-digit seven segment display using a standard time-division multiplexing technique. At one time flash one digit. It's is the same principle as a monitor.
+
+- sounce files
+  - clock_enable.vhd  
+  - cnt_up_down.vhd
+  - hex_7seg.vhd
+  - display.vhd
+  - display_7seg_4digits.vhd
+- simulation files
+  - tb_clock_enable.vhd
+  - tb_display.vhd
+  - tb_hex_7seg.vhd
+  - tb_7seg_4digits.vhd
+  - tb_cnt_up_down.vhd
 ##### driver_7seg_4digits simulation
 ![dspl](img/tb_sims/driver_7seg_4digits.png)
 
