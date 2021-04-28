@@ -125,6 +125,12 @@ Basically stores pin in high level struture. This module allows changing of the 
 ##### store new pin simulation
 ![pstr](img/tb_sims/pin_storage.png)
 
+
+### display driver
+
+##### driver_7seg_4digits simulation
+![dspl](img/tb_sims/driver_7seg_4digits.png)
+
 ## TOP module description and simulations
 
 Write your text here.
