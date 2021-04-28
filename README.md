@@ -104,7 +104,7 @@ Keyboard decoder is simple module written for better code organization. It uses 
 ![lc1d](img/tb_sims/lock_controller_1d.PNG)
 
 ##### unlock and store new pin
-![lcps](img/tb_sims/lock_controller_pin_set.PNG)
+![lcps](img/tb_sims/lock_controller_pin_set.png)
 
 ## TOP module description and simulations
 
