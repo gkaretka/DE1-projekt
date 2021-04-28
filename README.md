@@ -62,7 +62,7 @@ Debouncer is crude digital filter used for deglitching/debouncing incomming user
 Keyboard is mesh controller used for decoding mesh input and transforming it to vector format used later in application. This module switched very fast between three columns of buttons and read four inputs or rows (these are going through debouncer first). After that it sets bit with index of our key in its output vector. It uses state machine to be consistent. There is built in feature that prevents multiple button press on one real press caused by very fast clock speed (that is used for sampling).
 
 ### Keyboard state diagram
-![schematic2](img/keybord_statemachine.PNG)
+![schematic2](img/keybord_statemachine.png)
 
 - sounce files
   - keyboard.vhd
