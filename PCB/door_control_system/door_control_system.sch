@@ -1552,10 +1552,6 @@ Text GLabel 1075 7125 0    50   Input ~ 0
 CA3
 Text GLabel 1075 7225 0    50   Input ~ 0
 CA4
-NoConn ~ 1700 6925
-NoConn ~ 1700 7025
-NoConn ~ 1700 7125
-NoConn ~ 1700 7225
 $Comp
 L Device:R R25
 U 1 1 61118FB1
@@ -2130,4 +2126,20 @@ Wire Wire Line
 Connection ~ 2575 4650
 Wire Wire Line
 	2400 4650 2575 4650
+Text GLabel 1825 7225 2    50   Input ~ 0
+RST
+Text GLabel 1825 7025 2    50   Input ~ 0
+LOCKED
+Text GLabel 1825 6925 2    50   Input ~ 0
+UNLOCKED
+Text GLabel 1825 7125 2    50   Input ~ 0
+CHECKING
+Wire Wire Line
+	1700 7225 1825 7225
+Wire Wire Line
+	1700 7125 1825 7125
+Wire Wire Line
+	1700 7025 1825 7025
+Wire Wire Line
+	1700 6925 1825 6925
 $EndSCHEMATC
