@@ -90,6 +90,9 @@ Keyboard decoder is simple module written for better code organization. It uses 
 ### lock controller
 Keyboard decoder is simple module written for better code organization. It uses synchronous input from keyboard vector output and outputs structural data for later use in application. This block is basically interconnection between low level modules and high level application logic. By using this block we were able to write code faster because we do not need to take care of low level stuff. Output of this block is `command type` and `data type`. These two types store higher level information than simple logic vector.
 
+### Lock controller state diagram
+![kbsm](img/lock_controller_statemachine.png)
+
 - sounce files
   - lock_controller.vhd
 - simulation files
@@ -103,8 +106,13 @@ Keyboard decoder is simple module written for better code organization. It uses 
 ![lc1](img/tb_sims/lock_controller_1.PNG)
 ![lc1d](img/tb_sims/lock_controller_1d.PNG)
 
-##### unlock and store new pin
+##### unlock and store new pin simulation
+After setting new pin device automatically locks itself
 ![lcps](img/tb_sims/lock_controller_pin_set.png)
+
+#### fail simulation
+Fail 3 times and then wait for security feature (30s real life, simulation is shorter) then unlock with correct pin
+![lcf](img/tb_sims/lock_controller_fu.png)
 
 ## TOP module description and simulations
 

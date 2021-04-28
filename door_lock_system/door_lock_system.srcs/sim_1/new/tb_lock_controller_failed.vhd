@@ -101,7 +101,7 @@ begin
     --------------------------------------------------------------------
     p_clk_gen : process
     begin
-        while now < 36000 ns loop         -- 75 periods of 100MHz clock
+        while now < 45000 ns loop         -- 75 periods of 100MHz clock
             s_clk_100MHz <= '0';
             wait for c_CLK_100MHZ_PERIOD / 2;
             s_clk_100MHz <= '1';
@@ -191,6 +191,8 @@ begin
         s_rows(0)   <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
         
+        wait for 500 ns;
+        
         -- FAILED DATA 2 ----------------------------
         s_rows(2)   <=   "0000";
         s_rows(1)   <=   "0001";
@@ -256,8 +258,8 @@ begin
         s_rows(0)   <=   "0000";
         wait for 700 ns; -- delay betwenn clicks
         
-        s_rows(2)   <=   "0100"; -- 3
-        s_rows(1)   <=   "0000";
+        s_rows(2)   <=   "0000"; -- 2
+        s_rows(1)   <=   "0100";
         s_rows(0)   <=   "0000";        
         wait for 700 ns; -- wait for recognition
         s_rows(2)   <=   "0000";
