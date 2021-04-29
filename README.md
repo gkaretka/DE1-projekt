@@ -4,10 +4,14 @@ Door lock system with PIN (4-digit) terminal, 4x3 push buttons, 4-digit 7-segmen
 
 ### Team members
 
-Filip Kocum 
+Filip Kocum
+
 Martin Knob
+
 Vojtěch Hroch
-Gregor Karetka 
+
+Gregor Karetka
+
 
 [GitHub repository link](https://github.com/gkaretka/DE1-projekt)
 
