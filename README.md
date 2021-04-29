@@ -52,6 +52,7 @@ Build door lock system with 4x3 keyboard, 4-digit 7-segment display, relay for d
 ### debouncer
 Debouncer is crude digital filter used for deglitching/debouncing incomming user input signals. These signals are rather noisy so this is important block for every system that handles user input in analog way. Single debouncer(in this application it is 4x debouncer) is block with one input and one output. It samples signal with main high speed clock. When input is high debouncer starts counting up on every clock tick, until reaching counter limit. Output of single debouncer is high when counter is more than our threshold (settable) othewise it is low. This prevens sudden changes on output and makes it more stable.
 
+- [schematic](img/architecture_de_bouncer.jpg)
 - sounce files
   - [debouncer.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/de_bouncer.vhd)
 - simulation files
@@ -68,6 +69,7 @@ Keyboard is mesh controller used for decoding mesh input and transforming it to 
 ### Keyboard state diagram
 ![kbsm](img/keybord_statemachine.png)
 
+- [schematic](img/architecture_key_board.jpg)
 - sounce files
   - [keyboard.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/key_board.vhd)
 - simulation files
@@ -81,6 +83,7 @@ Keyboard is mesh controller used for decoding mesh input and transforming it to 
 ### keyboard decoder
 Keyboard decoder is simple module written for better code organization. It uses synchronous input from keyboard vector output and outputs structural data for later use in application. This block is basically interconnection between low level modules and high level application logic. By using this block we were able to write code faster because we do not need to take care of low level stuff. Output of this block is `command type` and `data type`. These two types store higher level information than simple logic vector.
 
+- [schematic](img/architecture_keyboard_decoder.jpg)
 - sounce files
   - [keyboard_decoder.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/keyboard_decoder.vhd)
 - simulation files
@@ -98,6 +101,7 @@ Keyboard decoder is simple module written for better code organization. It uses 
 ### Lock controller state diagram
 ![kbsm](img/lock_controller_statemachine.png)
 
+- [schematic](img/architecture_lock_controller.jpg)
 - sounce files
   - [lock_controller.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/lock_controler.vhd)
 - simulation files
@@ -121,6 +125,7 @@ Fail 3 times and then wait for security feature (30s real life, simulation is sh
 ### pin storage
 Basically stores pin in high level struture. This module allows changing of the pin on rising edge.
 
+- [schematic](img/architecture_pin_storage.jpg)
 - sounce files
   - [pin_storage.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/pin_storage.vhd)
 - simulation files
@@ -134,6 +139,7 @@ Basically stores pin in high level struture. This module allows changing of the 
 It has a common cathode. The display features one decimal point per digit, and individually controllable apostrophe and colon points.
 4-digit seven segment display using a standard time-division multiplexing technique. At one time flash one digit. It's is the same principle as a monitor.
 
+- [schematic](img/architecture_driver_7se_4digits.jpg)
 - sounce files
   - [clock_enable.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/clock_enable.vhd)  
   - [cnt_up_down.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/cnt_up_down.vhd)
