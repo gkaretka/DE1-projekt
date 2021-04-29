@@ -99,7 +99,7 @@ Keyboard decoder is simple module written for better code organization. It uses 
 Keyboard decoder is simple module written for better code organization. It uses synchronous input from keyboard vector output and outputs structural data for later use in application. This block is basically interconnection between low level modules and high level application logic. By using this block we were able to write code faster because we do not need to take care of low level stuff. Output of this block is `command type` and `data type`. These two types store higher level information than simple logic vector.
 
 ### Lock controller state diagram
-![kbsm](img/lock_controller_statemachine.jpg)
+![kbsm](img/lock_controller_statemachine.png)
 
 - [schematic](img/architecture_lock_controller.png)
 - sounce files
