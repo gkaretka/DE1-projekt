@@ -83,7 +83,7 @@ Keyboard is mesh controller used for decoding mesh input and transforming it to 
 ### keyboard decoder
 Keyboard decoder is simple module written for better code organization. It uses synchronous input from keyboard vector output and outputs structural data for later use in application. This block is basically interconnection between low level modules and high level application logic. By using this block we were able to write code faster because we do not need to take care of low level stuff. Output of this block is `command type` and `data type`. These two types store higher level information than simple logic vector.
 
-- [schematic](img/architecture_keyboard_decoder.jpg)
+- [schematic](img/architecture_keyboard_decoder.png)
 - sounce files
   - [keyboard_decoder.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/keyboard_decoder.vhd)
 - simulation files
