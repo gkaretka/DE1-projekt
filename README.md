@@ -139,7 +139,11 @@ Basically stores pin in high level struture. This module allows changing of the 
 It has a common cathode. The display features one decimal point per digit, and individually controllable apostrophe and colon points.
 4-digit seven segment display using a standard time-division multiplexing technique. At one time flash one digit. It's is the same principle as a monitor.
 
-- [schematic](img/architecture_driver_7se_4digits.jpg)
+- [schematic](img/architecture_driver_7seg_4digits.jpg)
+  - [clock_enable](img/architecture_clock_enable.jpg)
+  - [cnt_up_down](img/architecture_cnt_up_down.jpg)
+  - [hex_7seg](img/architecture_hex_7seg.jpg)
+  - [display](img/architecture_display.jpg)
 - sounce files
   - [clock_enable.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/clock_enable.vhd)  
   - [cnt_up_down.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/cnt_up_down.vhd)
