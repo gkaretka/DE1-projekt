@@ -49,7 +49,7 @@ Build door lock system with 4x3 keyboard, 4-digit 7-segment display, relay for d
 
 ## VHDL modules description and simulations
 
-### [debouncer](door_lock_system/door_lock_system.srcs/sources/new/de_bouncer)
+### [debouncer](door_lock_system/door_lock_system.srcs/sources/new/de_bouncer.vhd)
 Debouncer is crude digital filter used for deglitching/debouncing incomming user input signals. These signals are rather noisy so this is important block for every system that handles user input in analog way. Single debouncer(in this application it is 4x debouncer) is block with one input and one output. It samples signal with main high speed clock. When input is high debouncer starts counting up on every clock tick, until reaching counter limit. Output of single debouncer is high when counter is more than our threshold (settable) othewise it is low. This prevens sudden changes on output and makes it more stable.
 
 - sounce files
