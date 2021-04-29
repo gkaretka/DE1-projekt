@@ -49,12 +49,12 @@ Wire Wire Line
 $Comp
 L my_power:GNDPWR #PWR02
 U 1 1 606E8472
-P 5525 2900
-F 0 "#PWR02" H 5525 2700 50  0001 C CNN
-F 1 "GNDPWR" H 5529 2746 50  0000 C CNN
-F 2 "" H 5525 2850 50  0001 C CNN
-F 3 "" H 5525 2850 50  0001 C CNN
-	1    5525 2900
+P 5100 2775
+F 0 "#PWR02" H 5100 2575 50  0001 C CNN
+F 1 "GNDPWR" H 5100 2625 50  0000 C CNN
+F 2 "" H 5100 2725 50  0001 C CNN
+F 3 "" H 5100 2725 50  0001 C CNN
+	1    5100 2775
 	1    0    0    -1  
 $EndComp
 Text GLabel 6775 2700 2    50   Input ~ 0
@@ -1552,10 +1552,6 @@ Text GLabel 1075 7125 0    50   Input ~ 0
 CA3
 Text GLabel 1075 7225 0    50   Input ~ 0
 CA4
-NoConn ~ 1700 6925
-NoConn ~ 1700 7025
-NoConn ~ 1700 7125
-NoConn ~ 1700 7225
 $Comp
 L Device:R R25
 U 1 1 61118FB1
@@ -1762,10 +1758,6 @@ F 3 "~" H 5050 2075 50  0001 C CNN
 	1    5050 2075
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	5250 2075 5525 2075
-Wire Wire Line
-	5525 2075 5525 2900
 Wire Wire Line
 	5525 1975 5250 1975
 Wire Wire Line
@@ -2130,4 +2122,42 @@ Wire Wire Line
 Connection ~ 2575 4650
 Wire Wire Line
 	2400 4650 2575 4650
+Text GLabel 1825 7225 2    50   Input ~ 0
+RST
+Text GLabel 1825 7025 2    50   Input ~ 0
+LOCKED
+Text GLabel 1825 6925 2    50   Input ~ 0
+UNLOCKED
+Text GLabel 1825 7125 2    50   Input ~ 0
+CHECKING
+Wire Wire Line
+	1700 7225 1825 7225
+Wire Wire Line
+	1700 7125 1825 7125
+Wire Wire Line
+	1700 7025 1825 7025
+Wire Wire Line
+	1700 6925 1825 6925
+$Comp
+L Connector:Screw_Terminal_01x01 J?
+U 1 1 608D9259
+P 5525 2950
+F 0 "J?" V 5397 3030 50  0000 L CNN
+F 1 "Screw_Terminal_01x01" V 5650 2375 50  0000 L CNN
+F 2 "" H 5525 2950 50  0001 C CNN
+F 3 "~" H 5525 2950 50  0001 C CNN
+	1    5525 2950
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5525 2550 5525 2750
+Wire Wire Line
+	5100 2775 5100 2550
+Wire Wire Line
+	5100 2550 5525 2550
+Wire Wire Line
+	5250 2075 5525 2075
+Wire Wire Line
+	5525 2550 5525 2075
+Connection ~ 5525 2550
 $EndSCHEMATC

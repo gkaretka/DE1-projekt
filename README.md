@@ -4,13 +4,7 @@ Door lock system with PIN (4-digit) terminal, 4x3 push buttons, 4-digit 7-segmen
 
 ### Team members
 
-Filip Kocum
-
-Martin Knob
-
-Vojtěch Hroch
-
-Gregor Karetka
+Filip Kocum, Martin Knob, Vojtěch Hroch, Gregor Karetka
 
 
 [GitHub repository link](https://github.com/gkaretka/DE1-projekt)
@@ -157,14 +151,26 @@ It has a common cathode. The display features one decimal point per digit. 4-dig
 
 ## TOP module description and simulations
 
-Write your text here.
+### Tom module interconnection diagram (export RTL analysis)
 
+![topsch](img/top_schematic.PNG)
+
+### Top module simulation (unlock, set new pin, lock, unlock with new pin, lock with reset)
+
+![topsim](img/tb_sim/top.png)
+
+Top module is practically only to interconnect all submodules modules to the outer world and each other. This module has input of signals that are specified in XDC file and pipes them into induvidual modules. All modules are simulated independently and after passing all tests these modules are integrated into top module.
+
+### To sum up
+
+This device provides locking system with 4 digits pin, ability to change this pin, ability to be hard reset. Input pin is displayed on 4x 7-segment displays. This display is also used to view new pin when entering it. Relay is used to open solenoid locking mechanism or any other mechanical lock that needs higher current to be opened. Ground for logic and power systems are separated so no outer high voltage circuitry can harm sensitive electronics like FPGA.
 
 ## Video
 
 *Write your text here.
 
-
 ## References
 
-   1. Write your text here.
+1. [(tomas-fryza/Digital-electronics-1)](https://github.com/tomas-fryza/Digital-electronics-1)
+2. KALLSTROM, P. A Fairly Small VHDL Guide. Version 2.1.
+3. Haskell, Richard. Hanna, Darrin. Introduction to Digital Design Using Digilent FPGA Boards ─ Block Diagram / Verilog Examples. Oakland University, Rochester, Michigan, 2009. ISBN 978-0-9801337-9-0.

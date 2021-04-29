@@ -52,7 +52,7 @@ architecture Behavioral of tb_top is
     
     -- common anode
     signal s_ca                 : STD_LOGIC_VECTOR (4 - 1 downto 0);
-    signal s_cathodes           : STD_LOGIC_VECTOR (7 - 1 downto 0);
+    signal s_cathodes           : STD_LOGIC_VECTOR (8 - 1 downto 0);
     
     signal s_unlocked           : std_logic;
     signal s_locked             : std_logic;

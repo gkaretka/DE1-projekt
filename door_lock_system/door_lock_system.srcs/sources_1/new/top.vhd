@@ -43,7 +43,7 @@ entity top is
         keyboard_rows       :   in  std_logic_vector(4 - 1 downto 0);   -- Rows in
         
         CA                  :   out std_logic_vector(4 - 1 downto 0);   -- Common anode outputs
-        sev_seg_cathodes    :   out std_logic_vector(7 - 1 downto 0);   -- Cathodes outputs (schematic CX, X=(A, B...)
+        sev_seg_cathodes    :   out std_logic_vector(8 - 1 downto 0);   -- Cathodes outputs (schematic CX, X=(A, B...)
         
         unlocked_state      :   out std_logic;                          -- Green LED output
         locked_state        :   out std_logic;                          -- Red  LED output
@@ -160,7 +160,7 @@ begin
             dp_i        => "0000",
             
             seg_o(7 - 1 downto 0)   => sev_seg_cathodes(7 - 1 downto 0),
-            
+            dp_o                    => sev_seg_cathodes(7),
             -- Common anode signals to individual displays
             dig_o(4 - 1 downto 0)   => CA(4 - 1 downto 0)
         ); 
