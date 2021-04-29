@@ -55,7 +55,7 @@ Debouncer is crude digital filter used for deglitching/debouncing incomming user
 - sounce files
   - [debouncer.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/de_bouncer.vhd)
 - simulation files
-  - tb_debouncer.vhd
+  - [tb_debouncer.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_debouncer.vhd)
 
 #### TB debouncer simulation
 
@@ -71,7 +71,7 @@ Keyboard is mesh controller used for decoding mesh input and transforming it to 
 - sounce files
   - [keyboard.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/key_board.vhd)
 - simulation files
-  - tb_keyboard.vhd
+  - [tb_keyboard.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_keyboard.vhd)
 
 #### TB keyboard simulation
 
@@ -84,8 +84,8 @@ Keyboard decoder is simple module written for better code organization. It uses 
 - sounce files
   - [keyboard_decoder.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/keyboard_decoder.vhd)
 - simulation files
-  - tb_keyboard_decoder.vhd
-  - tb_keyboard_withraw_input.vhd
+  - [tb_keyboard_decoder.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_keyboard_decoder.vhd)
+  - [tb_keyboard_withraw_input.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_keyboard_withraw_input.vhd)
 
 #### TB keyboard decoder simulation
 
@@ -101,9 +101,9 @@ Keyboard decoder is simple module written for better code organization. It uses 
 - sounce files
   - [lock_controller.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/lock_controler.vhd)
 - simulation files
-  - tb_lock_controller.vhd
-  - tb_lock_controller_change_pin.vhd
-  - tb_lock_controller_failed.vhd
+  - [tb_lock_controller.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_lock_controller.vhd)
+  - [tb_lock_controller_change_pin.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_lock_controller_change_pin.vhd)
+  - [tb_lock_controller_failed.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_lock_controller_failed.vhd)
 
 ##### simple unlock (big picture, detail)
 ![lc1](img/tb_sims/lock_controller_1.PNG)
@@ -124,7 +124,7 @@ Basically stores pin in high level struture. This module allows changing of the 
 - sounce files
   - [pin_storage.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/pin_storage.vhd)
 - simulation files
-  - tb_pin_storage.vhd
+  - [tb_pin_storage.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_pin_storage.vhd)
 
 ##### store new pin simulation
 ![pstr](img/tb_sims/pin_storage.png)
@@ -141,11 +141,11 @@ It has a common cathode. The display features one decimal point per digit, and i
   - [display.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/display.vhd)
   - [display_7seg_4digits.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/display_7seg_4digits.vhd)
 - simulation files
-  - tb_clock_enable.vhd
-  - tb_display.vhd
-  - tb_hex_7seg.vhd
-  - tb_7seg_4digits.vhd
-  - tb_cnt_up_down.vhd
+  - [tb_clock_enable.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_clock_enable.vhd)
+  - [tb_display.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_display.vhd)
+  - [tb_hex_7seg.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_hex_7seg.vhd)
+  - [tb_7seg_4digits.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_7seg_4digits.vhd)
+  - [tb_cnt_up_down.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_cnt_up_down.vhd)
 ##### driver_7seg_4digits simulation
 ![dspl](img/tb_sims/driver_7seg_4digits.png)
 
