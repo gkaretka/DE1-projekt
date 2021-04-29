@@ -153,11 +153,11 @@ It has a common cathode. The display features one decimal point per digit. 4-dig
 
 ### Tom module interconnection diagram (export RTL analysis)
 
-![topsch](img/top_schematic.PNG)
+![topsch](img/top_schematic.png)
 
 ### Top module simulation (unlock, set new pin, lock, unlock with new pin, lock with reset)
 
-![topsim](img/tb_sim/top.png)
+![topsim](img/tb_sims/top.png)
 
 Top module is practically only to interconnect all submodules modules to the outer world and each other. This module has input of signals that are specified in XDC file and pipes them into induvidual modules. All modules are simulated independently and after passing all tests these modules are integrated into top module.
 
