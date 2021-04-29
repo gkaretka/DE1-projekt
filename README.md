@@ -136,8 +136,7 @@ Basically stores pin in high level struture. This module allows changing of the 
 
 
 ### display driver
-It has a common cathode. The display features one decimal point per digit, and individually controllable apostrophe and colon points.
-4-digit seven segment display using a standard time-division multiplexing technique. At one time flash one digit. It's is the same principle as a monitor.
+It has a common cathode. The display features one decimal point per digit. 4-digit seven segment display using a standard time-division multiplexing technique. At one time flash one digit. It's is the same principle as a monitor.
 
 - [schematic](img/architecture_driver_7seg_4digits.png)
   - [clock_enable](img/architecture_clock_enable.png)
