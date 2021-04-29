@@ -99,9 +99,9 @@ Keyboard decoder is simple module written for better code organization. It uses 
 Keyboard decoder is simple module written for better code organization. It uses synchronous input from keyboard vector output and outputs structural data for later use in application. This block is basically interconnection between low level modules and high level application logic. By using this block we were able to write code faster because we do not need to take care of low level stuff. Output of this block is `command type` and `data type`. These two types store higher level information than simple logic vector.
 
 ### Lock controller state diagram
-![kbsm](img/lock_controller_statemachine.png)
+![kbsm](img/lock_controller_statemachine.jpg)
 
-- [schematic](img/architecture_lock_controller.jpg)
+- [schematic](img/architecture_lock_controller.png)
 - sounce files
   - [lock_controller.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/lock_controler.vhd)
 - simulation files
@@ -125,7 +125,7 @@ Fail 3 times and then wait for security feature (30s real life, simulation is sh
 ### pin storage
 Basically stores pin in high level struture. This module allows changing of the pin on rising edge.
 
-- [schematic](img/architecture_pin_storage.jpg)
+- [schematic](img/architecture_pin_storage.png)
 - sounce files
   - [pin_storage.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/pin_storage.vhd)
 - simulation files
@@ -139,11 +139,11 @@ Basically stores pin in high level struture. This module allows changing of the 
 It has a common cathode. The display features one decimal point per digit, and individually controllable apostrophe and colon points.
 4-digit seven segment display using a standard time-division multiplexing technique. At one time flash one digit. It's is the same principle as a monitor.
 
-- [schematic](img/architecture_driver_7seg_4digits.jpg)
-  - [clock_enable](img/architecture_clock_enable.jpg)
-  - [cnt_up_down](img/architecture_cnt_up_down.jpg)
-  - [hex_7seg](img/architecture_hex_7seg.jpg)
-  - [display](img/architecture_display.jpg)
+- [schematic](img/architecture_driver_7seg_4digits.png)
+  - [clock_enable](img/architecture_clock_enable.png)
+  - [cnt_up_down](img/architecture_cnt_up_down.png)
+  - [hex_7seg](img/architecture_hex_7seg.png)
+  - [display](img/architecture_display.png)
 - sounce files
   - [clock_enable.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/clock_enable.vhd)  
   - [cnt_up_down.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/cnt_up_down.vhd)
