@@ -171,6 +171,6 @@ This device provides locking system with 4 digits pin, ability to change this pi
 
 ## References
 
-1. [(tomas-fryza/Digital-electronics-1)](https://github.com/tomas-fryza/Digital-electronics-1)
+1. [tomas-fryza/Digital-electronics-1](https://github.com/tomas-fryza/Digital-electronics-1)
 2. KALLSTROM, P. A Fairly Small VHDL Guide. Version 2.1.
 3. Haskell, Richard. Hanna, Darrin. Introduction to Digital Design Using Digilent FPGA Boards ─ Block Diagram / Verilog Examples. Oakland University, Rochester, Michigan, 2009. ISBN 978-0-9801337-9-0.
