@@ -4,10 +4,14 @@ Door lock system with PIN (4-digit) terminal, 4x3 push buttons, 4-digit 7-segmen
 
 ### Team members
 
-Filip Kocum 
+Filip Kocum
+
 Martin Knob
+
 Vojtěch Hroch
-Gregor Karetka 
+
+Gregor Karetka
+
 
 [GitHub repository link](https://github.com/gkaretka/DE1-projekt)
 
@@ -48,10 +52,11 @@ Build door lock system with 4x3 keyboard, 4-digit 7-segment display, relay for d
 ### debouncer
 Debouncer is crude digital filter used for deglitching/debouncing incomming user input signals. These signals are rather noisy so this is important block for every system that handles user input in analog way. Single debouncer(in this application it is 4x debouncer) is block with one input and one output. It samples signal with main high speed clock. When input is high debouncer starts counting up on every clock tick, until reaching counter limit. Output of single debouncer is high when counter is more than our threshold (settable) othewise it is low. This prevens sudden changes on output and makes it more stable.
 
+- [schematic](img/architecture_de_bouncer.jpg)
 - sounce files
-  - debouncer.vhd
+  - [debouncer.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/de_bouncer.vhd)
 - simulation files
-  - tb_debouncer.vhd
+  - [tb_debouncer.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_debouncer.vhd)
 
 #### TB debouncer simulation
 
@@ -64,10 +69,11 @@ Keyboard is mesh controller used for decoding mesh input and transforming it to 
 ### Keyboard state diagram
 ![kbsm](img/keybord_statemachine.png)
 
+- [schematic](img/architecture_key_board.jpg)
 - sounce files
-  - keyboard.vhd
+  - [keyboard.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/key_board.vhd)
 - simulation files
-  - tb_keyboard.vhd
+  - [tb_keyboard.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_keyboard.vhd)
 
 #### TB keyboard simulation
 
@@ -77,11 +83,12 @@ Keyboard is mesh controller used for decoding mesh input and transforming it to 
 ### keyboard decoder
 Keyboard decoder is simple module written for better code organization. It uses synchronous input from keyboard vector output and outputs structural data for later use in application. This block is basically interconnection between low level modules and high level application logic. By using this block we were able to write code faster because we do not need to take care of low level stuff. Output of this block is `command type` and `data type`. These two types store higher level information than simple logic vector.
 
+- [schematic](img/architecture_keyboard_decoder.jpg)
 - sounce files
-  - keyboard_decoder.vhd
+  - [keyboard_decoder.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/keyboard_decoder.vhd)
 - simulation files
-  - tb_keyboard_decoder.vhd
-  - tb_keyboard_withraw_input.vhd
+  - [tb_keyboard_decoder.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_keyboard_decoder.vhd)
+  - [tb_keyboard_withraw_input.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_keyboard_withraw_input.vhd)
 
 #### TB keyboard decoder simulation
 
@@ -94,12 +101,13 @@ Keyboard decoder is simple module written for better code organization. It uses 
 ### Lock controller state diagram
 ![kbsm](img/lock_controller_statemachine.png)
 
+- [schematic](img/architecture_lock_controller.jpg)
 - sounce files
-  - lock_controller.vhd
+  - [lock_controller.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/lock_controler.vhd)
 - simulation files
-  - tb_lock_controller.vhd
-  - tb_lock_controller_change_pin.vhd
-  - tb_lock_controller_failed.vhd
+  - [tb_lock_controller.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_lock_controller.vhd)
+  - [tb_lock_controller_change_pin.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_lock_controller_change_pin.vhd)
+  - [tb_lock_controller_failed.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_lock_controller_failed.vhd)
 
 ##### simple unlock (big picture, detail)
 ![lc1](img/tb_sims/lock_controller_1.PNG)
@@ -117,13 +125,39 @@ Fail 3 times and then wait for security feature (30s real life, simulation is sh
 ### pin storage
 Basically stores pin in high level struture. This module allows changing of the pin on rising edge.
 
+- [schematic](img/architecture_pin_storage.jpg)
 - sounce files
-  - pin_storage.vhd
+  - [pin_storage.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/pin_storage.vhd)
 - simulation files
-  - tb_pin_storage.vhd
+  - [tb_pin_storage.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_pin_storage.vhd)
 
 ##### store new pin simulation
 ![pstr](img/tb_sims/pin_storage.png)
+
+
+### display driver
+It has a common cathode. The display features one decimal point per digit, and individually controllable apostrophe and colon points.
+4-digit seven segment display using a standard time-division multiplexing technique. At one time flash one digit. It's is the same principle as a monitor.
+
+- [schematic](img/architecture_driver_7seg_4digits.jpg)
+  - [clock_enable](img/architecture_clock_enable.jpg)
+  - [cnt_up_down](img/architecture_cnt_up_down.jpg)
+  - [hex_7seg](img/architecture_hex_7seg.jpg)
+  - [display](img/architecture_display.jpg)
+- sounce files
+  - [clock_enable.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/clock_enable.vhd)  
+  - [cnt_up_down.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/cnt_up_down.vhd)
+  - [hex_7seg.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/cnt_up_down.vhd)
+  - [display.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/display.vhd)
+  - [display_7seg_4digits.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/display_7seg_4digits.vhd)
+- simulation files
+  - [tb_clock_enable.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_clock_enable.vhd)
+  - [tb_display.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_display.vhd)
+  - [tb_hex_7seg.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_hex_7seg.vhd)
+  - [tb_7seg_4digits.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_7seg_4digits.vhd)
+  - [tb_cnt_up_down.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_cnt_up_down.vhd)
+##### driver_7seg_4digits simulation
+![dspl](img/tb_sims/driver_7seg_4digits.png)
 
 ## TOP module description and simulations
 
