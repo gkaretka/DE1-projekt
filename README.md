@@ -31,7 +31,6 @@ Build door lock system with 4x3 keyboard, 4-digit 7-segment display, relay for d
 - `PCB/door_control_system/` - KiCAD project files (schematic, pcb, project)
 - `bitstream/`               - Bitstream folder containing top.bit (project bitstream)
 - `img/`                     - All images used as documentation
-- `plan/`                    - Plan/planning stuff
 - `block_diagram.drawio`     - Drawio file containing concept HW scheme
 - `README.md`                - Readme file (you are reading now) containing information of whole project
 
