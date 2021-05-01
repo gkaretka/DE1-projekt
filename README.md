@@ -50,7 +50,7 @@ Debouncer is crude digital filter used for deglitching/debouncing incomming user
 - sounce files
   - [debouncer.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/de_bouncer.vhd)
 - simulation files
-  - [tb_debouncer.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_debouncer.vhd)
+  - [tb_debouncer.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_de_bouncer.vhd)
 
 #### TB debouncer simulation
 
@@ -67,7 +67,7 @@ Keyboard is mesh controller used for decoding mesh input and transforming it to 
 - sounce files
   - [keyboard.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/key_board.vhd)
 - simulation files
-  - [tb_keyboard.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_keyboard.vhd)
+  - [tb_keyboard.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_key_board.vhd)
 
 #### TB keyboard simulation
 
@@ -97,7 +97,7 @@ Keyboard decoder is simple module written for better code organization. It uses 
 
 - [schematic](img/architecture_lock_controller.png)
 - sounce files
-  - [lock_controller.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/lock_controler.vhd)
+  - [lock_controller.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/lock_controller.vhd)
 - simulation files
   - [tb_lock_controller.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_lock_controller.vhd)
   - [tb_lock_controller_change_pin.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_lock_controller_change_pin.vhd)
@@ -140,7 +140,7 @@ It has a common cathode. The display features one decimal point per digit. 4-dig
   - [clock_enable.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/clock_enable.vhd)  
   - [cnt_up_down.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/cnt_up_down.vhd)
   - [hex_7seg.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/cnt_up_down.vhd)
-  - [display_7seg_4digits.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/display_7seg_4digits.vhd)
+  - [display_7seg_4digits.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/driver_7seg_4digits.vhd)
 - simulation files
   - [tb_clock_enable.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_clock_enable.vhd)
   - [tb_hex_7seg.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_hex_7seg.vhd)
