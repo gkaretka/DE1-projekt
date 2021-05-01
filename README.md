@@ -144,7 +144,7 @@ It has a common cathode. The display features one decimal point per digit. 4-dig
 - simulation files
   - [tb_clock_enable.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_clock_enable.vhd)
   - [tb_hex_7seg.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_hex_7seg.vhd)
-  - [tb_7seg_4digits.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_7seg_4digits.vhd)
+  - [tb_7seg_4digits.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_driver_7seg_4digits.vhd)
   - [tb_cnt_up_down.vhd](door_lock_system/door_lock_system.srcs/sim_1/new/tb_cnt_up_down.vhd)
 ##### driver_7seg_4digits simulation
 ![dspl](img/tb_sims/driver_7seg_4digits.png)
