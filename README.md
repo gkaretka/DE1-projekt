@@ -30,6 +30,7 @@ Build door lock system with 4x3 keyboard, 4-digit 7-segment display, relay for d
 ### Repository structure
 - `PCB/door_control_system/` - KiCAD project files (schematic, pcb, project)
 - `bitstream/`               - Bitstream folder containing top.bit (project bitstream)
+- `door_lock_system/`        - Vivado project root directory (containing sources, project, simulation output of top and .gitignore for binary files)
 - `img/`                     - All images used as documentation
 - `block_diagram.drawio`     - Drawio file containing concept HW scheme
 - `README.md`                - Readme file (you are reading now) containing information of whole project
