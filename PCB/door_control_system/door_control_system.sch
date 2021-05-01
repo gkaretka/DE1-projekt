@@ -46,17 +46,6 @@ F 12 "Active" H 6125 3800 60  0001 L CNN "Status"
 $EndComp
 Wire Wire Line
 	5925 1225 5925 1100
-$Comp
-L my_power:GNDPWR #PWR02
-U 1 1 606E8472
-P 5100 2775
-F 0 "#PWR02" H 5100 2575 50  0001 C CNN
-F 1 "GNDPWR" H 5100 2625 50  0000 C CNN
-F 2 "" H 5100 2725 50  0001 C CNN
-F 3 "" H 5100 2725 50  0001 C CNN
-	1    5100 2775
-	1    0    0    -1  
-$EndComp
 Text GLabel 6775 2700 2    50   Input ~ 0
 FPGA_DO
 $Comp
@@ -96,17 +85,6 @@ Wire Wire Line
 Connection ~ 5925 1100
 Wire Wire Line
 	5925 1100 5925 850 
-$Comp
-L my_power:+12V #PWR03
-U 1 1 606ED15E
-P 5925 850
-F 0 "#PWR03" H 5925 700 50  0001 C CNN
-F 1 "+12V" H 5940 1023 50  0000 C CNN
-F 2 "" H 5925 850 50  0001 C CNN
-F 3 "" H 5925 850 50  0001 C CNN
-	1    5925 850 
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:R R1
 U 1 1 606ED932
@@ -1159,94 +1137,6 @@ F 3 "~" H 1400 5325 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Barrel_Jack J4
-U 1 1 609BCDCE
-P 1450 1000
-F 0 "J4" H 1220 958 50  0000 R CNN
-F 1 "Barrel_Jack" H 1220 1049 50  0000 R CNN
-F 2 "" H 1500 960 50  0001 C CNN
-F 3 "~" H 1500 960 50  0001 C CNN
-	1    1450 1000
-	1    0    0    -1  
-$EndComp
-$Comp
-L my_power:GND #PWR025
-U 1 1 60ABB939
-P 1925 1300
-F 0 "#PWR025" H 1925 1050 50  0001 C CNN
-F 1 "GND" H 2000 1150 50  0000 R CNN
-F 2 "" H 1925 1300 50  0001 C CNN
-F 3 "" H 1925 1300 50  0001 C CNN
-	1    1925 1300
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1925 1100 1750 1100
-$Comp
-L Device:CP C1
-U 1 1 60B2C115
-P 2350 1050
-F 0 "C1" H 2468 1096 50  0000 L CNN
-F 1 "100u" H 2468 1005 50  0000 L CNN
-F 2 "" H 2388 900 50  0001 C CNN
-F 3 "~" H 2350 1050 50  0001 C CNN
-	1    2350 1050
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP C2
-U 1 1 60B2D2DA
-P 2825 1050
-F 0 "C2" H 2943 1096 50  0000 L CNN
-F 1 "4u7" H 2943 1005 50  0000 L CNN
-F 2 "" H 2863 900 50  0001 C CNN
-F 3 "~" H 2825 1050 50  0001 C CNN
-	1    2825 1050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1925 1100 1925 1200
-Connection ~ 1925 1200
-Wire Wire Line
-	1925 1200 1925 1300
-Connection ~ 2350 1200
-Connection ~ 2350 900 
-$Comp
-L my_power:+12V #PWR026
-U 1 1 60BD756F
-P 3075 900
-F 0 "#PWR026" H 3075 750 50  0001 C CNN
-F 1 "+12V" H 3090 1073 50  0000 C CNN
-F 2 "" H 3075 900 50  0001 C CNN
-F 3 "" H 3075 900 50  0001 C CNN
-	1    3075 900 
-	0    1    1    0   
-$EndComp
-Connection ~ 2825 900 
-Wire Wire Line
-	2350 900  2825 900 
-Wire Wire Line
-	2350 1200 2825 1200
-Wire Wire Line
-	2825 900  3075 900 
-Wire Wire Line
-	1925 1200 2350 1200
-$Comp
-L Device:Ferrite_Bead FB1
-U 1 1 60C4EF12
-P 2025 900
-F 0 "FB1" V 1751 900 50  0000 C CNN
-F 1 "Ferrite_Bead" V 1842 900 50  0000 C CNN
-F 2 "" V 1955 900 50  0001 C CNN
-F 3 "~" H 2025 900 50  0001 C CNN
-	1    2025 900 
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	1750 900  1875 900 
-Wire Wire Line
-	2175 900  2350 900 
-$Comp
 L Connector_Generic:Conn_02x06_Top_Bottom J2
 U 1 1 60C790B2
 P 1400 6200
@@ -1743,10 +1633,6 @@ Wire Wire Line
 Connection ~ 6425 7150
 Wire Wire Line
 	6425 7150 6575 7150
-Wire Wire Line
-	5925 1100 5525 1100
-Wire Wire Line
-	5525 1100 5525 1225
 $Comp
 L Connector:Screw_Terminal_01x02 J5
 U 1 1 61882384
@@ -2150,14 +2036,33 @@ F 3 "~" H 5525 2950 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	5525 2550 5525 2750
-Wire Wire Line
-	5100 2775 5100 2550
-Wire Wire Line
-	5100 2550 5525 2550
-Wire Wire Line
 	5250 2075 5525 2075
+$Comp
+L my_power:VCC #PWR02
+U 1 1 60926CF9
+P 5925 850
+F 0 "#PWR02" H 5925 700 50  0001 C CNN
+F 1 "VCC" H 5940 1023 50  0000 C CNN
+F 2 "" H 5925 850 50  0001 C CNN
+F 3 "" H 5925 850 50  0001 C CNN
+	1    5925 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x01 J4
+U 1 1 609754A9
+P 4925 1050
+F 0 "J4" V 4797 1130 50  0000 L CNN
+F 1 "Screw_Terminal_01x01" H 4500 900 50  0000 L CNN
+F 2 "" H 4925 1050 50  0001 C CNN
+F 3 "~" H 4925 1050 50  0001 C CNN
+	1    4925 1050
+	-1   0    0    1   
+$EndComp
 Wire Wire Line
-	5525 2550 5525 2075
-Connection ~ 5525 2550
+	5525 1050 5525 1225
+Wire Wire Line
+	5125 1050 5525 1050
+Wire Wire Line
+	5525 2075 5525 2750
 $EndSCHEMATC

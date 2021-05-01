@@ -27,6 +27,14 @@ Build door lock system with 4x3 keyboard, 4-digit 7-segment display, relay for d
   - new pin enter system (when device is unlocked new pin can be set by entering digits numbers and pressing set button)
     - new pin is stored until device is hard reseted (done by user unaccessible button)
 
+### Repository structure
+- `PCB/door_control_system/` - KiCAD project files (schematic, pcb, project)
+- `bitstream/`               - Bitstream folder containing top.bit (project bitstream)
+- `img/`                     - All images used as documentation
+- `plan/`                    - Plan/planning stuff
+- `block_diagram.drawio`     - Drawio file containing concept HW scheme
+- `README.md`                - Readme file (you are reading now) containing information of whole project
+
 ## Hardware description
 
 ### Simple hardware block diagram
@@ -130,7 +138,7 @@ Basically stores pin in high level struture. This module allows changing of the 
 
 
 ### display driver
-It has a common cathode. The display features one decimal point per digit. 4-digit seven segment display using a standard time-division multiplexing technique. At one time flash one digit. It's is the same principle as a monitor.
+It has a common anode. The display features one decimal point per digit. 4-digit seven segment display using a standard time-division multiplexing technique. At one time flash one digit. It's is the same principle as a monitor.
 
 - [schematic](img/architecture_driver_7seg_4digits.png)
   - [clock_enable](img/architecture_clock_enable.png)
@@ -161,7 +169,7 @@ It has a common cathode. The display features one decimal point per digit. 4-dig
 
 - sounce files
   - [top.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/top.vhd)
-- constrains
+- constraints
   - [arty.xdc](door_lock_system/door_lock_system.srcs/constrs_1/new/arty7.xdc)
 
 Top module is practically only to interconnect all submodules modules to the outer world and each other. This module has input of signals that are specified in XDC file and pipes them into induvidual modules. All modules are simulated independently and after passing all tests these modules are integrated into top module.
