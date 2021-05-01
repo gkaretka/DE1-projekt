@@ -159,6 +159,11 @@ It has a common cathode. The display features one decimal point per digit. 4-dig
 
 ![topsim](img/tb_sims/top.png)
 
+- sounce files
+  - [top.vhd](door_lock_system/door_lock_system.srcs/sources_1/new/top.vhd)
+- constrains
+  - [arty.xdc](door_lock_system/door_lock_system.srcs/constrs_1/new/arty7.xdc)
+
 Top module is practically only to interconnect all submodules modules to the outer world and each other. This module has input of signals that are specified in XDC file and pipes them into induvidual modules. All modules are simulated independently and after passing all tests these modules are integrated into top module.
 
 ### To sum up
