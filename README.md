@@ -27,6 +27,14 @@ Build door lock system with 4x3 keyboard, 4-digit 7-segment display, relay for d
   - new pin enter system (when device is unlocked new pin can be set by entering digits numbers and pressing set button)
     - new pin is stored until device is hard reseted (done by user unaccessible button)
 
+### Repository structure
+- `PCB/door_control_system/` - KiCAD project files (schematic, pcb, project)
+- `bitstream/`               - Bitstream folder containing top.bit (project bitstream)
+- `img/`                     - All images used as documentation
+- `plan/`                    - Plan/planning stuff
+- `block_diagram.drawio`     - Drawio file containing concept HW scheme
+- `README.md`                - Readme file (you are reading now) containing information of whole project
+
 ## Hardware description
 
 ### Simple hardware block diagram
