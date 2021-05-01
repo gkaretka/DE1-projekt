@@ -180,7 +180,7 @@ This device provides locking system with 4 digits pin, ability to change this pi
 
 ## Video
 
-*Write your text here.
+YouTube link: https://www.youtube.com/watch?v=FO_UiicsmQs
 
 ## References
 
